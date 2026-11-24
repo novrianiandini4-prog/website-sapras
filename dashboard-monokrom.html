@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Sarana & Prasarana - SMK Negeri 1 Ciomas (Monokrom Modern)</title>
+    
+    <!-- Google Fonts: Plus Jakarta Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS (100% via CDN tanpa Vite) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+                    },
+                    boxShadow: {
+                        'sharp-sm': '0 2px 4px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.06)',
+                        'sharp': '0 8px 24px -4px rgba(0, 0, 0, 0.14), 0 4px 10px -2px rgba(0, 0, 0, 0.08)',
+                        'sharp-lg': '0 16px 36px -8px rgba(0, 0, 0, 0.20), 0 6px 14px -3px rgba(0, 0, 0, 0.12)',
+                        'sharp-xl': '0 24px 50px -12px rgba(0, 0, 0, 0.28), 0 12px 20px -4px rgba(0, 0, 0, 0.15)',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+        /* Custom scrollbar monokrom */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #e5e7eb;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #4b5563;
+            border-radius: 9999px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #111827;
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-gray-100 via-gray-200 to-gray-300 text-gray-900 antialiased min-h-screen flex flex-col font-sans relative selection:bg-gray-900 selection:text-white" style="background-attachment: fixed;">
+
+    <!-- Background Pattern Ornamen Halus (Geometric Dot Mesh untuk Dimensi & Kedalaman Visual) -->
+    <div class="fixed inset-0 pointer-events-none opacity-[0.035] z-0" style="background-image: radial-gradient(#000 1.5px, transparent 1.5px); background-size: 24px 24px;"></div>
+
+    <!-- Top Navigation Bar: Hitam Pekat (bg-gray-900), Aksen Garis & Drop Shadow Tajam -->
+    <header class="sticky top-0 z-40 bg-gray-900/95 backdrop-blur-md text-white border-b-2 border-gray-800 shadow-sharp relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                
+                <!-- School Brand & Placeholder Logo -->
+                <div class="flex items-center space-x-4">
+                    <a href="#" class="flex items-center space-x-3.5 group">
+                        <!-- Placeholder Logo / Lambang Sekolah -->
+                        <div class="relative">
+                            <div class="w-12 h-12 rounded-2xl bg-white text-gray-900 flex items-center justify-center font-black shadow-lg border border-gray-200 group-hover:scale-105 group-hover:bg-gray-100 transition duration-200">
+                                <!-- Ikon Toga & Buku / Lambang Sekolah -->
+                                <svg class="w-6 h-6 text-gray-900" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
+                                    <path d="M6 12v5c3 3 9 3 12 0v-5"/>
+                                </svg>
+                            </div>
+                            <span class="absolute -bottom-1 -right-1 flex h-3.5 w-3.5">
+                                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
+                                <span class="relative inline-flex rounded-full h-3.5 w-3.5 bg-gray-400 border-2 border-gray-900"></span>
+                            </span>
+                        </div>
+
+                        <!-- Identitas Sekolah -->
+                        <div>
+                            <div class="flex items-center space-x-2">
+                                <span class="text-base font-black tracking-wide text-white group-hover:text-gray-200 transition">SMK NEGERI 1 CIOMAS</span>
+                                <span class="hidden sm:inline-flex items-center px-2 py-0.5 rounded-md text-[10px] font-extrabold uppercase bg-gray-800 text-gray-300 border border-gray-700 tracking-wider">
+                                    AKREDITASI A
+                                </span>
+                            </div>
+                            <span class="text-[11px] block font-semibold text-gray-400 -mt-0.5 tracking-wider uppercase">
+                                Sistem Informasi Sarana & Prasarana
+                            </span>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- Nav Menu Desktop (Monokrom Modern) -->
+                <nav class="hidden md:flex items-center space-x-2">
+                    <a href="#" class="px-4 py-2 rounded-xl text-xs font-black uppercase tracking-wider bg-white text-gray-900 shadow-md transition duration-200">
+                        Dashboard
+                    </a>
+                    <a href="#tabel-permohonan" class="px-4 py-2 rounded-xl text-xs font-bold uppercase tracking-wider text-gray-300 hover:text-white hover:bg-gray-800 transition duration-200">
+                        Peminjaman
+                    </a>
+                    <a href="#katalog-sapras" class="px-4 py-2 rounded-xl text-xs font-bold uppercase tracking-wider text-gray-300 hover:text-white hover:bg-gray-800 transition duration-200">
+                        Inventaris Aset
+                    </a>
+                    <a href="#aktivitas-terbaru" class="px-4 py-2 rounded-xl text-xs font-bold uppercase tracking-wider text-gray-300 hover:text-white hover:bg-gray-800 transition duration-200">
+                        Log Aktivitas
+                    </a>
+                    <a href="settings-monokrom.html" class="px-4 py-2 rounded-xl text-xs font-bold uppercase tracking-wider text-gray-300 hover:text-white hover:bg-gray-800 transition duration-200">
+                        Pengaturan
+                    </a>
+                </nav>
+
+                <!-- User Profile & Action -->
+                <div class="flex items-center space-x-3">
+                    <a href="settings-monokrom.html" class="flex items-center space-x-3 pl-3 border-l border-gray-800 hover:opacity-90 transition group">
+                        <div class="text-right hidden sm:block">
+                            <p class="text-[10px] text-gray-400 font-bold uppercase tracking-widest group-hover:text-gray-300">Administrator</p>
+                            <p class="text-sm font-extrabold text-white leading-tight">Drs. H. Hendra, M.Pd</p>
+                        </div>
+                        <span class="inline-flex items-center px-2.5 py-1 rounded-lg text-xs font-black uppercase tracking-wider bg-gray-800 text-gray-100 border border-gray-700 shadow-sm group-hover:bg-gray-700">
+                            STAF SAPRAS
+                        </span>
+                    </a>
+                    <button onclick="showToast('Sesi logout diamankan.')" class="p-2.5 rounded-xl text-gray-400 hover:text-white hover:bg-gray-800 transition duration-200 border border-transparent hover:border-gray-700" title="Keluar / Logout">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Navigation Subbar -->
+        <div class="md:hidden border-t border-gray-800 px-4 py-3 flex space-x-2 overflow-x-auto bg-gray-900">
+            <a href="#" class="px-3.5 py-1.5 rounded-xl text-xs font-black uppercase whitespace-nowrap bg-white text-gray-900 shadow-sm">Dashboard</a>
+            <a href="#tabel-permohonan" class="px-3.5 py-1.5 rounded-xl text-xs font-bold uppercase whitespace-nowrap text-gray-300 bg-gray-800 hover:bg-gray-700">Peminjaman</a>
+            <a href="#katalog-sapras" class="px-3.5 py-1.5 rounded-xl text-xs font-bold uppercase whitespace-nowrap text-gray-300 bg-gray-800 hover:bg-gray-700">Inventaris</a>
+            <a href="#aktivitas-terbaru" class="px-3.5 py-1.5 rounded-xl text-xs font-bold uppercase whitespace-nowrap text-gray-300 bg-gray-800 hover:bg-gray-700">Aktivitas</a>
+            <a href="settings-monokrom.html" class="px-3.5 py-1.5 rounded-xl text-xs font-bold uppercase whitespace-nowrap text-gray-300 bg-gray-800 hover:bg-gray-700">Pengaturan</a>
+        </div>
+    </header>
+
+    <!-- Main Content Container -->
+    <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8 relative z-10">
+
+        <!-- Top Banner: Placeholder Logo Sekolah & Warna Hitam Pekat (bg-gray-900) -->
+        <div class="relative overflow-hidden rounded-2xl bg-gray-900 p-6 sm:p-8 text-white shadow-sharp-lg border-2 border-gray-800">
+            <div class="absolute -right-16 -bottom-16 w-80 h-80 rounded-full bg-white/5 blur-3xl pointer-events-none"></div>
+            <div class="absolute right-12 top-6 opacity-10 hidden lg:block pointer-events-none">
+                <svg class="w-52 h-52 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
+                    <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+                </svg>
+            </div>
+
+            <div class="relative z-10 flex flex-col lg:flex-row lg:items-center justify-between gap-6">
+                
+                <!-- School Emblem Placeholder & Information -->
+                <div class="flex items-start sm:items-center space-x-4 sm:space-x-5">
+                    <!-- Area Placeholder Logo Sekolah (1:1 Ratio) -->
+                    <div class="shrink-0 relative group">
+                        <div class="w-20 h-20 rounded-2xl bg-white text-gray-900 p-1.5 flex flex-col items-center justify-center shadow-sharp border-2 border-gray-300 group-hover:scale-105 transition duration-200">
+                            <svg class="w-9 h-9 text-gray-900" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
+                                <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+                                <line x1="9" y1="7" x2="15" y2="7"/>
+                                <line x1="9" y1="11" x2="13" y2="11"/>
+                            </svg>
+                            <span class="text-[8px] font-black uppercase text-gray-800 tracking-tighter mt-1">LOGO SEKOLAH</span>
+                        </div>
+                        <span class="absolute -top-1.5 -right-1.5 px-1.5 py-0.5 rounded bg-gray-900 text-[9px] font-mono font-bold text-gray-300 border border-gray-700">1:1</span>
+                    </div>
+
+                    <div>
+                        <div class="flex flex-wrap items-center gap-2 mb-1.5">
+                            <span class="inline-flex items-center px-3 py-1 rounded-lg text-[11px] font-black uppercase tracking-wider bg-gray-800 text-gray-200 border border-gray-700">
+                                DASHBOARD PENGELOLA SAPRAS
+                            </span>
+                            <span class="inline-flex items-center px-2.5 py-1 rounded-lg text-[11px] font-bold text-gray-300 bg-gray-800/80 border border-gray-700">
+                                <span class="w-2 h-2 rounded-full bg-white mr-1.5 animate-pulse"></span>
+                                Semester Genap 2026/2027
+                            </span>
+                        </div>
+                        <h1 class="text-2xl sm:text-3xl font-black tracking-tight text-white">
+                            Sistem Manajemen Sarana & Prasarana
+                        </h1>
+                        <p class="text-xs sm:text-sm text-gray-300 mt-1 max-w-xl">
+                            SMK Negeri 1 Ciomas • Monitoring inventaris sarana alat praktikum, peminjaman ruang belajar, laboratorium, dan fasilitas sekolah.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Tombol Aksi Utama: Hitam & Putih Monokrom dengan Efek Hover Halus -->
+                <div class="flex items-center flex-wrap gap-3 shrink-0">
+                    <button onclick="showToast('Membuka modal tambah item baru...')" class="px-5 py-3 rounded-xl bg-white hover:bg-gray-100 text-gray-900 text-xs font-black uppercase tracking-wider shadow-sharp hover:shadow-sharp-lg transition duration-200 flex items-center space-x-2 transform hover:-translate-y-0.5">
+                        <svg class="w-4 h-4 text-gray-900" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 4v16m8-8H4" />
+                        </svg>
+                        <span>Tambah Aset / Item</span>
+                    </button>
+                    <button onclick="showToast('Membuka rekap data peminjaman...')" class="px-4 py-3 rounded-xl bg-gray-800 hover:bg-gray-700 text-white text-xs font-bold uppercase tracking-wider border border-gray-700 hover:border-gray-600 transition duration-200 flex items-center space-x-1.5">
+                        <svg class="w-4 h-4 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                        </svg>
+                        <span>Laporan PDF</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 4 KARTU STATISTIK (Wajib: Total Barang, Barang Dipinjam, Total Ruangan, Pengajuan Pending) -->
+        <!-- Memakai Sudut rounded-2xl dan Drop Shadow Tajam -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            
+            <!-- Kartu Statistik 1: Total Barang & Peralatan -->
+            <div class="bg-white rounded-2xl p-6 border-2 border-gray-300/80 shadow-sharp hover:shadow-sharp-lg transition-all duration-200 transform hover:-translate-y-1 relative group overflow-hidden">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <span class="text-[11px] font-black uppercase tracking-wider text-gray-500">Total Barang & Aset</span>
+                        <h3 class="text-3xl sm:text-4xl font-black text-gray-900 mt-1 tracking-tight">486</h3>
+                    </div>
+                    <div class="w-14 h-14 rounded-2xl bg-gray-900 text-white flex items-center justify-center shadow-sharp border border-gray-800 group-hover:scale-105 transition duration-200">
+                        <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
+                        </svg>
+                    </div>
+                </div>
+                <div class="mt-4 pt-3.5 border-t border-gray-200 flex items-center justify-between text-xs font-semibold">
+                    <span class="text-gray-600">358 Alat & 128 Ruang</span>
+                    <span class="inline-flex items-center px-2 py-0.5 rounded-md bg-gray-100 text-gray-800 border border-gray-300 text-[10px] font-bold">
+                        +14 Semester Ini
+                    </span>
+                </div>
+                <!-- Garis Aksen Bawah Hitam -->
+                <div class="absolute bottom-0 inset-x-0 h-1 bg-gray-900"></div>
+            </div>
+
+            <!-- Kartu Statistik 2: Barang Sedang Dipinjam -->
+            <div class="bg-white rounded-2xl p-6 border-2 border-gray-300/80 shadow-sharp hover:shadow-sharp-lg transition-all duration-200 transform hover:-translate-y-1 relative group overflow-hidden">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <span class="text-[11px] font-black uppercase tracking-wider text-gray-500">Barang Dipinjam</span>
+                        <h3 class="text-3xl sm:text-4xl font-black text-gray-900 mt-1 tracking-tight">64</h3>
+                    </div>
+                    <div class="w-14 h-14 rounded-2xl bg-gray-900 text-white flex items-center justify-center shadow-sharp border border-gray-800 group-hover:scale-105 transition duration-200">
+                        <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                        </svg>
+                    </div>
+                </div>
+                <div class="mt-4 pt-3.5 border-t border-gray-200 flex items-center justify-between text-xs font-semibold">
+                    <span class="text-gray-600">14 Ruangan & 50 Peralatan</span>
+                    <span class="inline-flex items-center px-2 py-0.5 rounded-md bg-gray-900 text-white text-[10px] font-black uppercase">
+                        Aktif Digunakan
+                    </span>
+                </div>
+                <div class="absolute bottom-0 inset-x-0 h-1 bg-gray-900"></div>
+            </div>
+
+            <!-- Kartu Statistik 3: Ruangan & Lab Tersedia -->
+            <div class="bg-white rounded-2xl p-6 border-2 border-gray-300/80 shadow-sharp hover:shadow-sharp-lg transition-all duration-200 transform hover:-translate-y-1 relative group overflow-hidden">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <span class="text-[11px] font-black uppercase tracking-wider text-gray-500">Ruangan Tersedia</span>
+                        <h3 class="text-3xl sm:text-4xl font-black text-gray-900 mt-1 tracking-tight">114</h3>
+                    </div>
+                    <div class="w-14 h-14 rounded-2xl bg-gray-900 text-white flex items-center justify-center shadow-sharp border border-gray-800 group-hover:scale-105 transition duration-200">
+                        <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                        </svg>
+                    </div>
+                </div>
+                <div class="mt-4 pt-3.5 border-t border-gray-200 flex items-center justify-between text-xs font-semibold">
+                    <span class="text-gray-600">Lab, Aula, & Bengkel</span>
+                    <span class="inline-flex items-center px-2 py-0.5 rounded-md bg-gray-100 text-gray-800 border border-gray-300 text-[10px] font-bold">
+                        89% Siap Pakai
+                    </span>
+                </div>
+                <div class="absolute bottom-0 inset-x-0 h-1 bg-gray-900"></div>
+            </div>
+
+            <!-- Kartu Statistik 4: Pengajuan Pending (Menunggu Verifikasi) -->
+            <div class="bg-white rounded-2xl p-6 border-2 border-gray-300/80 shadow-sharp hover:shadow-sharp-lg transition-all duration-200 transform hover:-translate-y-1 relative group overflow-hidden">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <span class="text-[11px] font-black uppercase tracking-wider text-gray-500">Pengajuan Pending</span>
+                        <h3 class="text-3xl sm:text-4xl font-black text-gray-900 mt-1 tracking-tight">8</h3>
+                    </div>
+                    <div class="w-14 h-14 rounded-2xl bg-gray-900 text-white flex items-center justify-center shadow-sharp border border-gray-800 group-hover:scale-105 transition duration-200">
+                        <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                    </div>
+                </div>
+                <div class="mt-4 pt-3.5 border-t border-gray-200 flex items-center justify-between text-xs font-semibold">
+                    <span class="text-gray-600">Perlu Tindakan Staf</span>
+                    <span class="inline-flex items-center px-2 py-0.5 rounded-md border-2 border-gray-900 text-gray-900 text-[10px] font-black uppercase">
+                        Verifikasi Cepat
+                    </span>
+                </div>
+                <div class="absolute bottom-0 inset-x-0 h-1 bg-gray-900"></div>
+            </div>
+        </div>
+
+        <!-- Filter & Search Toolbar (Putih Bersih dengan Drop Shadow Tajam) -->
+        <div class="flex flex-col sm:flex-row items-center justify-between gap-4 bg-white p-4 sm:p-5 rounded-2xl border-2 border-gray-300/80 shadow-sharp">
+            <div class="flex items-center space-x-2 w-full sm:w-auto overflow-x-auto pb-1 sm:pb-0">
+                <button class="px-4 py-2 rounded-xl text-xs font-black uppercase tracking-wider bg-gray-900 text-white shadow-sharp transition">
+                    Semua Sarpras (486)
+                </button>
+                <button class="px-4 py-2 rounded-xl text-xs font-bold uppercase tracking-wider text-gray-700 hover:text-gray-900 hover:bg-gray-100 transition">
+                    🏢 Ruangan & Lab (128)
+                </button>
+                <button class="px-4 py-2 rounded-xl text-xs font-bold uppercase tracking-wider text-gray-700 hover:text-gray-900 hover:bg-gray-100 transition">
+                    📦 Alat & Media (358)
+                </button>
+            </div>
+
+            <div class="relative w-full sm:w-80">
+                <input type="text" placeholder="Cari nama barang, peminjam, atau ruangan..."
+                    class="w-full pl-10 pr-4 py-2.5 text-xs sm:text-sm font-medium rounded-xl border-2 border-gray-300 focus:outline-none focus:border-gray-900 focus:ring-1 focus:ring-gray-900 transition bg-gray-50 focus:bg-white">
+                <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-gray-500">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                    </svg>
+                </div>
+            </div>
+        </div>
+
+        <!-- Grid Konten Dashboard 2 Kolom (7 Kolom vs 5 Kolom) -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+            
+            <!-- KOLOM KIRI (7 Kolom): Tabel Permohonan Masuk & Fasilitas Populer -->
+            <div class="lg:col-span-7 space-y-8" id="tabel-permohonan">
+                
+                <!-- Quick Table: Permohonan Masuk (Perlu Tindakan Staf) -->
+                <div class="bg-white rounded-2xl border-2 border-gray-300/80 shadow-sharp overflow-hidden">
+                    <div class="p-6 border-b-2 border-gray-100 flex items-center justify-between bg-white">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-10 h-10 rounded-xl bg-gray-900 text-white flex items-center justify-center shadow-sm">
+                                <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
+                                </svg>
+                            </div>
+                            <div>
+                                <h2 class="text-lg font-black text-gray-900">Permohonan Masuk (Perlu Tindakan)</h2>
+                                <p class="text-xs text-gray-500 font-medium">Verifikasi persetujuan atau penolakan staf sarpras sekolah.</p>
+                            </div>
+                        </div>
+                        <span class="inline-flex items-center px-2.5 py-1 rounded-md text-[11px] font-black uppercase bg-gray-100 text-gray-900 border border-gray-300">
+                            8 Pending
+                        </span>
+                    </div>
+
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left border-collapse text-xs sm:text-sm">
+                            <thead>
+                                <tr class="bg-gray-100/80 text-gray-700 uppercase text-[10px] font-black tracking-wider border-b-2 border-gray-200">
+                                    <th class="py-3.5 px-5">Peminjam</th>
+                                    <th class="py-3.5 px-5">Sarana / Item</th>
+                                    <th class="py-3.5 px-5">Jadwal Pakai</th>
+                                    <th class="py-3.5 px-5 text-center">Aksi Cepat</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-gray-200 text-gray-800">
+                                <!-- Row 1 -->
+                                <tr class="hover:bg-gray-50/80 transition duration-150" id="row-1">
+                                    <td class="py-3.5 px-5 whitespace-nowrap">
+                                        <p class="font-black text-gray-900">Anita Rahmawati, S.Kom</p>
+                                        <p class="text-[11px] text-gray-500 font-mono">Guru Produktif RPL</p>
+                                    </td>
+                                    <td class="py-3.5 px-5 whitespace-nowrap">
+                                        <p class="font-bold text-gray-900">Lab Komputer RPL 2</p>
+                                        <span class="inline-block text-[10px] font-black uppercase px-2 py-0.5 rounded-md bg-gray-900 text-white">
+                                            Ruangan
+                                        </span>
+                                    </td>
+                                    <td class="py-3.5 px-5 whitespace-nowrap">
+                                        <p class="font-bold text-gray-900">03 Okt 2026</p>
+                                        <p class="text-[11px] text-gray-500 font-mono">08:00 - 11:30 WIB</p>
+                                    </td>
+                                    <td class="py-3.5 px-5 text-center whitespace-nowrap">
+                                        <div class="inline-flex items-center space-x-2">
+                                            <button onclick="approveRow('row-1', 'Lab Komputer RPL 2')" class="px-3 py-1.5 rounded-xl bg-gray-900 hover:bg-black text-white text-xs font-black uppercase tracking-wider shadow-sharp transition duration-200 transform hover:-translate-y-0.5">
+                                                Setujui
+                                            </button>
+                                            <button onclick="rejectRow('row-1')" class="px-3 py-1.5 rounded-xl bg-white text-gray-900 hover:bg-gray-100 border-2 border-gray-300 hover:border-gray-900 text-xs font-bold uppercase tracking-wider transition duration-200">
+                                                Tolak
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+
+                                <!-- Row 2 -->
+                                <tr class="hover:bg-gray-50/80 transition duration-150" id="row-2">
+                                    <td class="py-3.5 px-5 whitespace-nowrap">
+                                        <p class="font-black text-gray-900">Budi Santoso (Ketua OSIS)</p>
+                                        <p class="text-[11px] text-gray-500 font-mono">Kelas XII RPL 1</p>
+                                    </td>
+                                    <td class="py-3.5 px-5 whitespace-nowrap">
+                                        <p class="font-bold text-gray-900">Proyektor Epson EB-X400</p>
+                                        <span class="inline-block text-[10px] font-black uppercase px-2 py-0.5 rounded-md bg-white text-gray-900 border border-gray-400">
+                                            Alat
+                                        </span>
+                                    </td>
+                                    <td class="py-3.5 px-5 whitespace-nowrap">
+                                        <p class="font-bold text-gray-900">03 Okt 2026</p>
+                                        <p class="text-[11px] text-gray-500 font-mono">13:00 - 15:30 WIB</p>
+                                    </td>
+                                    <td class="py-3.5 px-5 text-center whitespace-nowrap">
+                                        <div class="inline-flex items-center space-x-2">
+                                            <button onclick="approveRow('row-2', 'Proyektor Epson')" class="px-3 py-1.5 rounded-xl bg-gray-900 hover:bg-black text-white text-xs font-black uppercase tracking-wider shadow-sharp transition duration-200 transform hover:-translate-y-0.5">
+                                                Setujui
+                                            </button>
+                                            <button onclick="rejectRow('row-2')" class="px-3 py-1.5 rounded-xl bg-white text-gray-900 hover:bg-gray-100 border-2 border-gray-300 hover:border-gray-900 text-xs font-bold uppercase tracking-wider transition duration-200">
+                                                Tolak
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+
+                                <!-- Row 3 -->
+                                <tr class="hover:bg-gray-50/80 transition duration-150" id="row-3">
+                                    <td class="py-3.5 px-5 whitespace-nowrap">
+                                        <p class="font-black text-gray-900">Drs. Bambang Wijaya</p>
+                                        <p class="text-[11px] text-gray-500 font-mono">Waka Kesiswaan</p>
+                                    </td>
+                                    <td class="py-3.5 px-5 whitespace-nowrap">
+                                        <p class="font-bold text-gray-900">Aula Utama Graha Wiyata</p>
+                                        <span class="inline-block text-[10px] font-black uppercase px-2 py-0.5 rounded-md bg-gray-900 text-white">
+                                            Ruangan
+                                        </span>
+                                    </td>
+                                    <td class="py-3.5 px-5 whitespace-nowrap">
+                                        <p class="font-bold text-gray-900">04 Okt 2026</p>
+                                        <p class="text-[11px] text-gray-500 font-mono">07:30 - 14:00 WIB</p>
+                                    </td>
+                                    <td class="py-3.5 px-5 text-center whitespace-nowrap">
+                                        <div class="inline-flex items-center space-x-2">
+                                            <button onclick="approveRow('row-3', 'Aula Utama')" class="px-3 py-1.5 rounded-xl bg-gray-900 hover:bg-black text-white text-xs font-black uppercase tracking-wider shadow-sharp transition duration-200 transform hover:-translate-y-0.5">
+                                                Setujui
+                                            </button>
+                                            <button onclick="rejectRow('row-3')" class="px-3 py-1.5 rounded-xl bg-white text-gray-900 hover:bg-gray-100 border-2 border-gray-300 hover:border-gray-900 text-xs font-bold uppercase tracking-wider transition duration-200">
+                                                Tolak
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Status Fasilitas Utama Hari Ini -->
+                <div class="bg-white rounded-2xl p-6 border-2 border-gray-300/80 shadow-sharp" id="katalog-sapras">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="flex items-center space-x-2.5">
+                            <div class="w-8 h-8 rounded-xl bg-gray-900 text-white flex items-center justify-center font-black">
+                                <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16" />
+                                </svg>
+                            </div>
+                            <h3 class="text-sm font-black uppercase tracking-wider text-gray-900">Status Fasilitas Ruangan Unggulan</h3>
+                        </div>
+                        <span class="text-xs text-gray-500 font-semibold">Realtime Status</span>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div class="p-4 rounded-xl border-2 border-gray-200 hover:border-gray-900 transition duration-200 bg-gray-50/60">
+                            <div class="flex items-center justify-between">
+                                <h4 class="font-extrabold text-sm text-gray-900">Lab Komputer Jaringan</h4>
+                                <span class="px-2 py-0.5 rounded-md text-[10px] font-black uppercase bg-gray-900 text-white">TERSEDIA</span>
+                            </div>
+                            <p class="text-xs text-gray-500 mt-1">Kapasitas 36 Unit PC Core i7 • AC • Switch Gigabit</p>
+                        </div>
+
+                        <div class="p-4 rounded-xl border-2 border-gray-200 hover:border-gray-900 transition duration-200 bg-gray-50/60">
+                            <div class="flex items-center justify-between">
+                                <h4 class="font-extrabold text-sm text-gray-900">Studio Broadcasting TV</h4>
+                                <span class="px-2 py-0.5 rounded-md text-[10px] font-black uppercase bg-white text-gray-900 border border-gray-400">DIPINJAM</span>
+                            </div>
+                            <p class="text-xs text-gray-500 mt-1">Praktek Jurusan Multimedia / DKV (13.00 - 16.00 WIB)</p>
+                        </div>
+
+                        <div class="p-4 rounded-xl border-2 border-gray-200 hover:border-gray-900 transition duration-200 bg-gray-50/60">
+                            <div class="flex items-center justify-between">
+                                <h4 class="font-extrabold text-sm text-gray-900">Bengkel Otomotif Modern</h4>
+                                <span class="px-2 py-0.5 rounded-md text-[10px] font-black uppercase bg-gray-900 text-white">TERSEDIA</span>
+                            </div>
+                            <p class="text-xs text-gray-500 mt-1">Hidrolik Car Lift • Scanner Diagnostik EFI Siap Pakai</p>
+                        </div>
+
+                        <div class="p-4 rounded-xl border-2 border-gray-200 hover:border-gray-900 transition duration-200 bg-gray-50/60">
+                            <div class="flex items-center justify-between">
+                                <h4 class="font-extrabold text-sm text-gray-900">Ruang Aula Pertemuan</h4>
+                                <span class="px-2 py-0.5 rounded-md text-[10px] font-black uppercase bg-white text-gray-900 border border-gray-400">TERJADWAL</span>
+                            </div>
+                            <p class="text-xs text-gray-500 mt-1">Rapat Koordinasi Komite Sekolah (Pukul 14.00 WIB)</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- KOLOM KANAN (5 Kolom): WAJIB "Daftar Aktivitas Terbaru" & Widget Informasi Sekolah -->
+            <div class="lg:col-span-5 space-y-8" id="aktivitas-terbaru">
+                
+                <!-- DAFTAR AKTIVITAS TERBARU (Sesuai Aturan Prompt Wajib Ada di Dashboard) -->
+                <div class="bg-white rounded-2xl border-2 border-gray-300/80 shadow-sharp overflow-hidden">
+                    <div class="p-6 border-b-2 border-gray-100 flex items-center justify-between bg-white">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-10 h-10 rounded-xl bg-gray-900 text-white flex items-center justify-center shadow-sm">
+                                <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                            </div>
+                            <div>
+                                <h2 class="text-base font-black text-gray-900">Daftar Aktivitas Terbaru</h2>
+                                <p class="text-[11px] text-gray-500 font-medium">Log aktivitas permohonan & sarpras terkini</p>
+                            </div>
+                        </div>
+                        <span class="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-black uppercase bg-gray-100 text-gray-800 border border-gray-300">
+                            Live Log
+                        </span>
+                    </div>
+
+                    <!-- Timeline Aktivitas -->
+                    <div class="p-6 divide-y divide-gray-100">
+                        
+                        <!-- Aktivitas 1 -->
+                        <div class="py-3.5 first:pt-0 flex items-start space-x-3.5 group">
+                            <div class="w-8 h-8 rounded-xl bg-gray-900 text-white flex items-center justify-center shrink-0 mt-0.5">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" /></svg>
+                            </div>
+                            <div class="flex-1 min-w-0">
+                                <div class="flex items-center justify-between">
+                                    <p class="text-xs font-black text-gray-900 truncate">Lab Komputer RPL 1</p>
+                                    <span class="text-[10px] text-gray-400 font-mono">8 mnt lalu</span>
+                                </div>
+                                <p class="text-xs text-gray-600 mt-0.5">Disetujui untuk Guru Produktif (Praktikum Laravel)</p>
+                                <div class="mt-1 flex items-center space-x-2">
+                                    <span class="inline-block text-[9px] font-black uppercase px-2 py-0.5 rounded bg-gray-900 text-white">Disetujui</span>
+                                    <span class="text-[10px] text-gray-500 font-mono">Kode: SAP-0921</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Aktivitas 2 -->
+                        <div class="py-3.5 flex items-start space-x-3.5 group">
+                            <div class="w-8 h-8 rounded-xl bg-gray-200 text-gray-800 border border-gray-400 flex items-center justify-center shrink-0 mt-0.5">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3" /></svg>
+                            </div>
+                            <div class="flex-1 min-w-0">
+                                <div class="flex items-center justify-between">
+                                    <p class="text-xs font-black text-gray-900 truncate">Proyektor Epson EB-X400</p>
+                                    <span class="text-[10px] text-gray-400 font-mono">22 mnt lalu</span>
+                                </div>
+                                <p class="text-xs text-gray-600 mt-0.5">Permohonan diajukan oleh Siswa XII RPL 1</p>
+                                <div class="mt-1 flex items-center space-x-2">
+                                    <span class="inline-block text-[9px] font-black uppercase px-2 py-0.5 rounded bg-gray-200 text-gray-800 border border-gray-400">Menunggu</span>
+                                    <span class="text-[10px] text-gray-500 font-mono">Keperluan: Sidang Pleno</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Aktivitas 3 -->
+                        <div class="py-3.5 flex items-start space-x-3.5 group">
+                            <div class="w-8 h-8 rounded-xl bg-gray-100 text-gray-700 border border-gray-300 flex items-center justify-center shrink-0 mt-0.5">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
+                            </div>
+                            <div class="flex-1 min-w-0">
+                                <div class="flex items-center justify-between">
+                                    <p class="text-xs font-black text-gray-900 truncate">Ruang Audio Visual</p>
+                                    <span class="text-[10px] text-gray-400 font-mono">1 jam lalu</span>
+                                </div>
+                                <p class="text-xs text-gray-600 mt-0.5">Kunci ruangan dikembalikan lengkap & kondisi baik</p>
+                                <div class="mt-1 flex items-center space-x-2">
+                                    <span class="inline-block text-[9px] font-black uppercase px-2 py-0.5 rounded bg-gray-100 text-gray-700 border border-gray-300">Selesai</span>
+                                    <span class="text-[10px] text-gray-500 font-mono">Staf: Pak Joko</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Aktivitas 4 -->
+                        <div class="py-3.5 last:pb-0 flex items-start space-x-3.5 group">
+                            <div class="w-8 h-8 rounded-xl bg-gray-900 text-white flex items-center justify-center shrink-0 mt-0.5">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" /></svg>
+                            </div>
+                            <div class="flex-1 min-w-0">
+                                <div class="flex items-center justify-between">
+                                    <p class="text-xs font-black text-gray-900 truncate">5 Unit Mic Wireless Shure</p>
+                                    <span class="text-[10px] text-gray-400 font-mono">3 jam lalu</span>
+                                </div>
+                                <p class="text-xs text-gray-600 mt-0.5">Penambahan inventaris baru oleh Bendahara BOS</p>
+                                <div class="mt-1 flex items-center space-x-2">
+                                    <span class="inline-block text-[9px] font-black uppercase px-2 py-0.5 rounded bg-gray-900 text-white">Aset Baru</span>
+                                    <span class="text-[10px] text-gray-500 font-mono">Kondisi: 100% Baru</span>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="p-4 bg-gray-50 border-t border-gray-100 text-center">
+                        <button onclick="showToast('Memuat 20 riwayat aktivitas lainnya...')" class="text-xs font-bold text-gray-900 hover:underline">
+                            Lihat Seluruh Riwayat Log &rarr;
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Card Ketentuan Sarpras & Kontak Sekolah -->
+                <div class="bg-gray-900 rounded-2xl p-6 text-white border-2 border-gray-800 shadow-sharp relative overflow-hidden">
+                    <div class="flex items-center space-x-3 mb-3">
+                        <div class="w-9 h-9 rounded-xl bg-white text-gray-900 flex items-center justify-center font-black">
+                            <svg class="w-5 h-5 text-gray-900" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                        </div>
+                        <div>
+                            <h4 class="text-sm font-black">Ketentuan Peminjaman Sarpras</h4>
+                            <p class="text-[11px] text-gray-400">SMK Negeri 1 Ciomas Official</p>
+                        </div>
+                    </div>
+                    <p class="text-xs text-gray-300 leading-relaxed">
+                        1. Setiap peminjaman alat inventaris wajib diverifikasi fisik sebelum dan sesudah kegiatan.<br>
+                        2. Batas maksimal pengembalian harian adalah pukul 16.00 WIB di Ruang Tata Usaha / Sarpras.
+                    </p>
+                    <div class="mt-4 pt-3 border-t border-gray-800 flex items-center justify-between text-[11px] text-gray-400 font-mono">
+                        <span>Ruang Sapras: Gedung B-02</span>
+                        <span>Hotline: (021) 8872-104</span>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </main>
+
+    <!-- Footer: Monokrom Bersih, Elegan & Berdimensi -->
+    <footer class="bg-gray-900 text-gray-400 border-t-2 border-gray-800 py-8 mt-auto relative z-10 shadow-sharp">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-4 text-xs">
+                
+                <!-- School Identity in Footer -->
+                <div class="flex items-center space-x-3 text-center md:text-left">
+                    <div class="w-9 h-9 rounded-xl bg-white text-gray-900 flex items-center justify-center font-black">
+                        <svg class="w-5 h-5 text-gray-900" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
+                            <path d="M6 12v5c3 3 9 3 12 0v-5"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <p class="font-extrabold text-white">SISTEM INFORMASI MANAJEMEN SARPRAS SEKOLAH</p>
+                        <p class="text-[11px] text-gray-400">SMK Negeri 1 Ciomas • Terakreditasi A • NPSN: 20108899</p>
+                    </div>
+                </div>
+
+                <!-- Copyright -->
+                <div class="text-center md:text-right">
+                    <p class="text-gray-300 font-semibold">&copy; 2026 Hak Cipta Terpelihara.</p>
+                    <p class="text-[11px] text-gray-500 mt-0.5">Kelompok Andini, Nursyifa, Reisya</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Toast Notification Element -->
+    <div id="toast" class="fixed bottom-5 right-5 z-50 transform translate-y-20 opacity-0 transition-all duration-300 pointer-events-none">
+        <div class="bg-gray-900 text-white px-5 py-3.5 rounded-2xl shadow-sharp-xl border border-gray-700 flex items-center space-x-3 text-xs font-bold">
+            <span class="w-2.5 h-2.5 rounded-full bg-white"></span>
+            <span id="toast-msg">Notifikasi berhasil!</span>
+        </div>
+    </div>
+
+    <!-- Interactive Script untuk Demo -->
+    <script>
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            const msg = document.getElementById('toast-msg');
+            msg.textContent = message;
+            toast.classList.remove('translate-y-20', 'opacity-0', 'pointer-events-none');
+            setTimeout(() => {
+                toast.classList.add('translate-y-20', 'opacity-0', 'pointer-events-none');
+            }, 3000);
+        }
+
+        function approveRow(rowId, name) {
+            const row = document.getElementById(rowId);
+            if (row) {
+                row.style.transition = 'all 0.3s ease';
+                row.style.opacity = '0.4';
+                row.style.backgroundColor = '#f3f4f6';
+                setTimeout(() => {
+                    row.remove();
+                    showToast('Permohonan "' + name + '" berhasil disetujui!');
+                }, 300);
+            }
+        }
+
+        function rejectRow(rowId) {
+            const row = document.getElementById(rowId);
+            if (row) {
+                row.style.transition = 'all 0.3s ease';
+                row.style.opacity = '0.3';
+                setTimeout(() => {
+                    row.remove();
+                    showToast('Permohonan peminjaman berhasil ditolak.');
+                }, 300);
+            }
+        }
+    </script>
+</body>
+</html>

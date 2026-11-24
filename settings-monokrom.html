@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pengaturan Administrator - SAPRAS SMK Negeri 1 Ciomas (Monokrom Modern)</title>
+    
+    <!-- Google Fonts: Plus Jakarta Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS (100% via CDN murni) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+                    },
+                    boxShadow: {
+                        'sharp-sm': '0 1px 3px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.04)',
+                        'sharp': '0 4px 12px rgba(0, 0, 0, 0.08)',
+                        'sharp-lg': '0 12px 28px -6px rgba(0, 0, 0, 0.15)',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+        /* Custom scrollbar monokrom halus */
+        ::-webkit-scrollbar {
+            width: 7px;
+            height: 7px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f3f4f6;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #9ca3af;
+            border-radius: 9999px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #111827;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-900 antialiased min-h-screen flex flex-col font-sans selection:bg-gray-900 selection:text-white">
+
+    <!-- Top Navigation Bar: Hitam Pekat (bg-gray-900) dengan Aksen Garis & Drop Shadow Tajam -->
+    <header class="sticky top-0 z-40 bg-gray-900 text-white border-b-2 border-gray-800 shadow-sm relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                
+                <!-- School Brand & Placeholder Logo -->
+                <div class="flex items-center space-x-4">
+                    <a href="dashboard-monokrom.html" class="flex items-center space-x-3.5 group">
+                        <!-- Placeholder Logo / Lambang Sekolah -->
+                        <div class="relative">
+                            <div class="w-12 h-12 rounded-2xl bg-white text-gray-900 flex items-center justify-center font-black shadow-sm border border-gray-200 group-hover:scale-105 group-hover:bg-gray-100 transition duration-200">
+                                <svg class="w-6 h-6 text-gray-900" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
+                                    <path d="M6 12v5c3 3 9 3 12 0v-5"/>
+                                </svg>
+                            </div>
+                            <span class="absolute -bottom-1 -right-1 flex h-3.5 w-3.5">
+                                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
+                                <span class="relative inline-flex rounded-full h-3.5 w-3.5 bg-gray-400 border-2 border-gray-900"></span>
+                            </span>
+                        </div>
+
+                        <!-- Identitas Sekolah -->
+                        <div>
+                            <div class="flex items-center space-x-2">
+                                <span class="text-base font-black tracking-wide text-white group-hover:text-gray-200 transition">SMK NEGERI 1 CIOMAS</span>
+                                <span class="hidden sm:inline-flex items-center px-2 py-0.5 rounded-md text-[10px] font-extrabold uppercase bg-gray-800 text-gray-300 border border-gray-700 tracking-wider">
+                                    AKREDITASI A
+                                </span>
+                            </div>
+                            <span class="text-[11px] block font-semibold text-gray-400 -mt-0.5 tracking-wider uppercase">
+                                Sistem Sarana & Prasarana Sekolah
+                            </span>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- Nav Menu Desktop -->
+                <nav class="hidden md:flex items-center space-x-2">
+                    <a href="dashboard-monokrom.html" class="px-4 py-2 rounded-xl text-xs font-bold uppercase tracking-wider text-gray-300 hover:text-white hover:bg-gray-800 transition duration-200">
+                        Dashboard
+                    </a>
+                    <a href="dashboard-monokrom.html#tabel-permohonan" class="px-4 py-2 rounded-xl text-xs font-bold uppercase tracking-wider text-gray-300 hover:text-white hover:bg-gray-800 transition duration-200">
+                        Peminjaman
+                    </a>
+                    <a href="dashboard-monokrom.html#katalog-sapras" class="px-4 py-2 rounded-xl text-xs font-bold uppercase tracking-wider text-gray-300 hover:text-white hover:bg-gray-800 transition duration-200">
+                        Inventaris
+                    </a>
+                    <a href="settings-monokrom.html" class="px-4 py-2 rounded-xl text-xs font-black uppercase tracking-wider bg-white text-gray-900 shadow-sm transition duration-200">
+                        Pengaturan
+                    </a>
+                </nav>
+
+                <!-- User Profile -->
+                <div class="flex items-center space-x-3">
+                    <div class="flex items-center space-x-3 pl-3 border-l border-gray-800">
+                        <div class="text-right hidden sm:block">
+                            <p class="text-[10px] text-gray-400 font-bold uppercase tracking-widest">Koordinator</p>
+                            <p class="text-sm font-extrabold text-white leading-tight">Drs. H. Hendra, M.Pd</p>
+                        </div>
+                        <span class="inline-flex items-center px-2.5 py-1 rounded-lg text-xs font-black uppercase tracking-wider bg-gray-800 text-gray-100 border border-gray-700 shadow-sm">
+                            ADMIN
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Container: Latar Belakang Putih Keabu-abuan (bg-gray-50) -->
+    <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-10 space-y-8">
+
+        <!-- Header Halaman -->
+        <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pb-2 border-b border-gray-200">
+            <div>
+                <div class="flex items-center space-x-2 text-xs font-semibold text-gray-500 mb-1">
+                    <a href="dashboard-monokrom.html" class="hover:text-black transition">Dashboard</a>
+                    <span>/</span>
+                    <span class="text-gray-900 font-bold">Pengaturan</span>
+                </div>
+                <h1 class="text-2xl sm:text-3xl font-black text-gray-900 tracking-tight">Pengaturan Administrator</h1>
+                <p class="text-xs sm:text-sm text-gray-500 mt-0.5">Kelola identitas akun admin, kredensial keamanan, dan preferensi inventaris sekolah.</p>
+            </div>
+
+            <div class="flex items-center space-x-2">
+                <span class="inline-flex items-center px-3 py-1.5 rounded-xl text-[11px] font-black uppercase tracking-wider bg-gray-900 text-white shadow-sm">
+                    <span class="w-2 h-2 rounded-full bg-white mr-2 animate-pulse"></span>
+                    Akun Staf Terverifikasi
+                </span>
+            </div>
+        </div>
+
+        <!-- Grid Layout: 2 Bagian (Sidebar Menu Kiri & Area Form Kanan) -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+            
+            <!-- BAGIAN KIRI: Sidebar Menu Pengaturan (4 Kolom pada Layar Lebar) -->
+            <div class="lg:col-span-4 space-y-6">
+                
+                <!-- Kartu Identitas Profil Staf (Kartu Putih Bersih, rounded-xl, border-gray-100, shadow-sm) -->
+                <div class="bg-white rounded-xl border border-gray-100 shadow-sm p-6 text-center">
+                    <!-- Avatar Inisial Lingkaran Monokrom -->
+                    <div class="relative w-20 h-20 mx-auto mb-3">
+                        <div class="w-20 h-20 rounded-full bg-gray-900 text-white flex items-center justify-center font-black text-2xl shadow-sm border-2 border-gray-200">
+                            H
+                        </div>
+                        <span class="absolute bottom-0 right-0 w-6 h-6 rounded-full bg-white border-2 border-gray-900 flex items-center justify-center text-[10px] font-black text-gray-900 shadow-sm">
+                            ✓
+                        </span>
+                    </div>
+
+                    <h3 class="text-base font-black text-gray-900 leading-snug">Drs. H. Hendra, M.Pd</h3>
+                    <p class="text-xs text-gray-500 font-mono mt-0.5">admin.sapras@smkn1ciomas.sch.id</p>
+                    
+                    <div class="mt-4 pt-4 border-t border-gray-100 flex items-center justify-between text-xs text-gray-600">
+                        <span class="font-medium text-gray-500">Peran Sistem:</span>
+                        <span class="px-2.5 py-0.5 rounded-md text-[10px] font-black uppercase tracking-wider bg-gray-100 text-gray-900 border border-gray-200">
+                            STAF ADMIN SAPRAS
+                        </span>
+                    </div>
+                    <div class="mt-2 flex items-center justify-between text-xs text-gray-600">
+                        <span class="font-medium text-gray-500">Instansi:</span>
+                        <span class="font-bold text-gray-900 text-[11px]">SMK Negeri 1 Ciomas</span>
+                    </div>
+                </div>
+
+                <!-- Kartu Sidebar Menu (Kartu Putih Bersih, rounded-xl, border-gray-100, shadow-sm) -->
+                <div class="bg-white rounded-xl border border-gray-100 shadow-sm overflow-hidden p-2.5 space-y-1">
+                    
+                    <!-- Menu 1: Profil Admin (Aktif Default) -->
+                    <button type="button" onclick="switchTab('profile')" id="nav-profile"
+                        class="tab-nav-btn w-full flex items-center justify-between px-4 py-3 rounded-lg text-xs font-black uppercase tracking-wider transition duration-150 bg-gray-900 text-white shadow-sm">
+                        <div class="flex items-center space-x-3">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                            </svg>
+                            <span>Profil Admin</span>
+                        </div>
+                        <span class="text-[10px] font-mono opacity-90">&rarr;</span>
+                    </button>
+
+                    <!-- Menu 2: Keamanan & Password -->
+                    <button type="button" onclick="switchTab('security')" id="nav-security"
+                        class="tab-nav-btn w-full flex items-center justify-between px-4 py-3 rounded-lg text-xs font-bold uppercase tracking-wider transition duration-150 text-gray-600 hover:text-gray-900 hover:bg-gray-100">
+                        <div class="flex items-center space-x-3">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                            </svg>
+                            <span>Keamanan & Password</span>
+                        </div>
+                        <span class="text-[10px] font-mono opacity-40">&rarr;</span>
+                    </button>
+
+                    <!-- Menu 3: Preferensi Sistem -->
+                    <button type="button" onclick="switchTab('preferences')" id="nav-preferences"
+                        class="tab-nav-btn w-full flex items-center justify-between px-4 py-3 rounded-lg text-xs font-bold uppercase tracking-wider transition duration-150 text-gray-600 hover:text-gray-900 hover:bg-gray-100">
+                        <div class="flex items-center space-x-3">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                            </svg>
+                            <span>Preferensi Sistem</span>
+                        </div>
+                        <span class="text-[10px] font-mono opacity-40">&rarr;</span>
+                    </button>
+
+                </div>
+
+                <!-- Kartu Ringkasan Standar Sekolah -->
+                <div class="bg-white rounded-xl border border-gray-100 shadow-sm p-5 text-xs text-gray-500">
+                    <div class="flex items-center space-x-2 text-gray-900 font-bold mb-2">
+                        <svg class="w-4 h-4 text-gray-900" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        <span>Pedoman Sarpras Sekolah</span>
+                    </div>
+                    <p class="leading-relaxed">
+                        Data profil admin akan tercetak pada lembar peminjaman, surat serah terima aset, dan laporan audit tahunan sarana sekolah.
+                    </p>
+                </div>
+
+            </div>
+
+            <!-- BAGIAN KANAN: Area Form Pengaturan (8 Kolom pada Layar Lebar) -->
+            <div class="lg:col-span-8">
+                
+                <!-- TAB 1: FORM PROFIL ADMIN (Default Aktif) -->
+                <!-- Kartu Putih Bersih, rounded-xl, border-gray-100, shadow-sm -->
+                <div id="tab-content-profile" class="tab-pane bg-white rounded-xl border border-gray-100 shadow-sm p-6 sm:p-8">
+                    
+                    <div class="border-b border-gray-100 pb-5 mb-6">
+                        <span class="text-[10px] font-black uppercase tracking-widest text-gray-400">IDENTITAS RESMI</span>
+                        <h2 class="text-xl font-black text-gray-900 tracking-tight mt-0.5">Formulir Profil Administrator</h2>
+                        <p class="text-xs text-gray-500 mt-1">Perbarui data identitas staf sarana & prasarana yang berwenang di sekolah.</p>
+                    </div>
+
+                    <form id="form-profile" onsubmit="event.preventDefault(); triggerSaveToast('Perubahan profil admin dan sekolah berhasil disimpan!');" class="space-y-6">
+                        
+                        <!-- Input 1: Nama Lengkap -->
+                        <div>
+                            <label for="name" class="block text-xs font-black text-gray-900 uppercase tracking-wider mb-2">
+                                Nama Lengkap <span class="text-gray-400">*</span>
+                            </label>
+                            <input type="text" id="name" name="name"
+                                value="Drs. H. Hendra, M.Pd" required
+                                placeholder="Masukkan nama lengkap beserta gelar..."
+                                class="w-full px-4 py-3 text-sm font-semibold rounded-xl bg-gray-50 border border-gray-200 text-gray-900 placeholder-gray-400 focus:bg-white focus:border-gray-900 focus:ring-1 focus:ring-gray-900 focus:outline-none transition duration-150">
+                            <span class="text-[11px] text-gray-400 mt-1 block">Nama lengkap yang muncul pada laporan & bukti permohonan sarpras.</span>
+                        </div>
+
+                        <!-- Input 2: Email Admin -->
+                        <div>
+                            <label for="email" class="block text-xs font-black text-gray-900 uppercase tracking-wider mb-2">
+                                Email Admin <span class="text-gray-400">*</span>
+                            </label>
+                            <div class="relative">
+                                <input type="email" id="email" name="email"
+                                    value="admin.sapras@smkn1ciomas.sch.id" required
+                                    placeholder="nama@sekolah.sch.id"
+                                    class="w-full pl-10 pr-4 py-3 text-sm font-semibold rounded-xl bg-gray-50 border border-gray-200 text-gray-900 placeholder-gray-400 focus:bg-white focus:border-gray-900 focus:ring-1 focus:ring-gray-900 focus:outline-none transition duration-150">
+                                <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-gray-400">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207" />
+                                    </svg>
+                                </div>
+                            </div>
+                            <span class="text-[11px] text-gray-400 mt-1 block">Alamat surel kedinasan resmi sekolah untuk menerima notifikasi sistem.</span>
+                        </div>
+
+                        <!-- Input 3: Nama Sekolah / Instansi -->
+                        <div>
+                            <label for="school_name" class="block text-xs font-black text-gray-900 uppercase tracking-wider mb-2">
+                                Nama Sekolah / Instansi <span class="text-gray-400">*</span>
+                            </label>
+                            <input type="text" id="school_name" name="school_name"
+                                value="SMK Negeri 1 Ciomas" required
+                                placeholder="Contoh: SMK Negeri 1 Ciomas"
+                                class="w-full px-4 py-3 text-sm font-semibold rounded-xl bg-gray-50 border border-gray-200 text-gray-900 placeholder-gray-400 focus:bg-white focus:border-gray-900 focus:ring-1 focus:ring-gray-900 focus:outline-none transition duration-150">
+                            <span class="text-[11px] text-gray-400 mt-1 block">Nama instansi yang tercantum pada kop formulir dan katalog resmi sarpras.</span>
+                        </div>
+
+                        <!-- Data Pendukung Sekolah (NIP & Jabatan) -->
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-1">
+                            <div>
+                                <label for="nip" class="block text-xs font-black text-gray-900 uppercase tracking-wider mb-2">
+                                    NIP / NUPTK Staf
+                                </label>
+                                <input type="text" id="nip" name="nip"
+                                    value="19780512 200501 1 004"
+                                    placeholder="Nomor Induk Pegawai..."
+                                    class="w-full px-4 py-3 text-sm font-semibold rounded-xl bg-gray-50 border border-gray-200 text-gray-900 focus:bg-white focus:border-gray-900 focus:ring-1 focus:ring-gray-900 focus:outline-none transition duration-150 font-mono">
+                            </div>
+
+                            <div>
+                                <label for="jabatan" class="block text-xs font-black text-gray-900 uppercase tracking-wider mb-2">
+                                    Jabatan / Penanggung Jawab
+                                </label>
+                                <input type="text" id="jabatan" name="jabatan"
+                                    value="Koordinator Sarana & Prasarana"
+                                    placeholder="Contoh: Kepala Subbag Sarpras"
+                                    class="w-full px-4 py-3 text-sm font-semibold rounded-xl bg-gray-50 border border-gray-200 text-gray-900 focus:bg-white focus:border-gray-900 focus:ring-1 focus:ring-gray-900 focus:outline-none transition duration-150">
+                            </div>
+                        </div>
+
+                        <!-- Tombol Simpan Perubahan: Sudut Kanan Bawah, Hitam Pekat (bg-gray-900), Efek Hover Terangkat & Bayangan Menebal -->
+                        <div class="flex items-center justify-end pt-6 border-t border-gray-100">
+                            <button type="submit"
+                                class="inline-flex items-center space-x-2 px-7 py-3 rounded-xl bg-gray-900 hover:bg-black text-white text-xs font-black uppercase tracking-wider shadow-sm hover:shadow-xl transition-all duration-200 ease-out transform hover:-translate-y-0.5 active:scale-95 cursor-pointer">
+                                <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" />
+                                </svg>
+                                <span>Simpan Perubahan</span>
+                            </button>
+                        </div>
+                    </form>
+
+                </div>
+
+                <!-- TAB 2: FORM KEAMANAN & PASSWORD -->
+                <div id="tab-content-security" class="tab-pane hidden bg-white rounded-xl border border-gray-100 shadow-sm p-6 sm:p-8">
+                    
+                    <div class="border-b border-gray-100 pb-5 mb-6">
+                        <span class="text-[10px] font-black uppercase tracking-widest text-gray-400">AUTENTIKASI & KEAMANAN</span>
+                        <h2 class="text-xl font-black text-gray-900 tracking-tight mt-0.5">Keamanan Akun & Kata Sandi</h2>
+                        <p class="text-xs text-gray-500 mt-1">Perbarui kata sandi secara berkala untuk menjaga kerahasiaan inventaris sekolah.</p>
+                    </div>
+
+                    <form onsubmit="event.preventDefault(); triggerSaveToast('Kata sandi admin berhasil diperbarui!');" class="space-y-6">
+                        
+                        <div>
+                            <label for="current_pass" class="block text-xs font-black text-gray-900 uppercase tracking-wider mb-2">
+                                Kata Sandi Saat Ini <span class="text-gray-400">*</span>
+                            </label>
+                            <div class="relative">
+                                <input type="password" id="current_pass" required placeholder="••••••••"
+                                    class="w-full pl-4 pr-11 py-3 text-sm font-semibold rounded-xl bg-gray-50 border border-gray-200 text-gray-900 focus:bg-white focus:border-gray-900 focus:ring-1 focus:ring-gray-900 focus:outline-none transition duration-150">
+                                <button type="button" onclick="togglePasswordVisibility('current_pass', this)" class="absolute inset-y-0 right-0 pr-3.5 flex items-center text-gray-400 hover:text-gray-900 transition focus:outline-none" title="Lihat / Sembunyikan Kata Sandi" aria-label="Lihat / Sembunyikan Kata Sandi">
+                                    <svg class="w-4 h-4 eye-open" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                                    </svg>
+                                    <svg class="w-4 h-4 eye-closed hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l18 18" />
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <label for="new_pass" class="block text-xs font-black text-gray-900 uppercase tracking-wider mb-2">
+                                    Kata Sandi Baru <span class="text-gray-400">*</span>
+                                </label>
+                                <div class="relative">
+                                    <input type="password" id="new_pass" required placeholder="Min. 8 karakter..."
+                                        class="w-full pl-4 pr-11 py-3 text-sm font-semibold rounded-xl bg-gray-50 border border-gray-200 text-gray-900 focus:bg-white focus:border-gray-900 focus:ring-1 focus:ring-gray-900 focus:outline-none transition duration-150">
+                                    <button type="button" onclick="togglePasswordVisibility('new_pass', this)" class="absolute inset-y-0 right-0 pr-3.5 flex items-center text-gray-400 hover:text-gray-900 transition focus:outline-none" title="Lihat / Sembunyikan Kata Sandi" aria-label="Lihat / Sembunyikan Kata Sandi">
+                                        <svg class="w-4 h-4 eye-open" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                                        </svg>
+                                        <svg class="w-4 h-4 eye-closed hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l18 18" />
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div>
+                                <label for="confirm_pass" class="block text-xs font-black text-gray-900 uppercase tracking-wider mb-2">
+                                    Ulangi Kata Sandi Baru <span class="text-gray-400">*</span>
+                                </label>
+                                <div class="relative">
+                                    <input type="password" id="confirm_pass" required placeholder="Ketik ulang kata sandi..."
+                                        class="w-full pl-4 pr-11 py-3 text-sm font-semibold rounded-xl bg-gray-50 border border-gray-200 text-gray-900 focus:bg-white focus:border-gray-900 focus:ring-1 focus:ring-gray-900 focus:outline-none transition duration-150">
+                                    <button type="button" onclick="togglePasswordVisibility('confirm_pass', this)" class="absolute inset-y-0 right-0 pr-3.5 flex items-center text-gray-400 hover:text-gray-900 transition focus:outline-none" title="Lihat / Sembunyikan Kata Sandi" aria-label="Lihat / Sembunyikan Kata Sandi">
+                                        <svg class="w-4 h-4 eye-open" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                                        </svg>
+                                        <svg class="w-4 h-4 eye-closed hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l18 18" />
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="p-4 rounded-xl bg-gray-50 border border-gray-200 text-xs text-gray-600 space-y-1">
+                            <p class="font-black text-gray-900">Pedoman Sandi Kuat:</p>
+                            <p>• Gunakan minimal 8 karakter dengan campuran huruf kapital, angka, dan karakter khusus.</p>
+                            <p>• Jangan menggunakan tanggal lahir atau informasi pribadi yang mudah ditebak.</p>
+                        </div>
+
+                        <!-- Tombol Simpan Perubahan -->
+                        <div class="flex items-center justify-end pt-6 border-t border-gray-100">
+                            <button type="submit"
+                                class="inline-flex items-center space-x-2 px-7 py-3 rounded-xl bg-gray-900 hover:bg-black text-white text-xs font-black uppercase tracking-wider shadow-sm hover:shadow-xl transition-all duration-200 ease-out transform hover:-translate-y-0.5 active:scale-95 cursor-pointer">
+                                <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" />
+                                </svg>
+                                <span>Simpan Perubahan</span>
+                            </button>
+                        </div>
+                    </form>
+
+                </div>
+
+                <!-- TAB 3: FORM PREFERENSI SISTEM -->
+                <div id="tab-content-preferences" class="tab-pane hidden bg-white rounded-xl border border-gray-100 shadow-sm p-6 sm:p-8">
+                    
+                    <div class="border-b border-gray-100 pb-5 mb-6">
+                        <span class="text-[10px] font-black uppercase tracking-widest text-gray-400">KONFIGURASI SAPRAS</span>
+                        <h2 class="text-xl font-black text-gray-900 tracking-tight mt-0.5">Preferensi Layanan Peminjaman Sarana & Prasarana</h2>
+                        <p class="text-xs text-gray-500 mt-1">Konfigurasikan format kode penomoran aset barang dan batasan operasional sekolah.</p>
+                    </div>
+
+                    <form onsubmit="event.preventDefault(); triggerSaveToast('Preferensi layanan peminjaman berhasil disimpan!');" class="space-y-6">
+                        
+                        <div>
+                            <label for="prefix_sample" class="block text-xs font-black text-gray-900 uppercase tracking-wider mb-2">
+                                Format Penomoran Registrasi Aset
+                            </label>
+                            <input type="text" id="prefix_sample" value="SAPRAS/SMK1-TLD/{TAHUN}/{NO}"
+                                class="w-full px-4 py-3 text-sm font-semibold rounded-xl bg-gray-50 border border-gray-200 text-gray-900 focus:bg-white focus:border-gray-900 focus:ring-1 focus:ring-gray-900 focus:outline-none transition duration-150 font-mono">
+                            <span class="text-[11px] text-gray-400 mt-1 block">Format otomatis yang dipakai saat staf menambahkan barang/ruangan baru.</span>
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-xs font-black text-gray-900 uppercase tracking-wider mb-2">
+                                    Jam Mulai Peminjaman
+                                </label>
+                                <input type="time" value="07:00"
+                                    class="w-full px-4 py-3 text-sm font-semibold rounded-xl bg-gray-50 border border-gray-200 text-gray-900 focus:bg-white focus:border-gray-900 focus:ring-1 focus:ring-gray-900 focus:outline-none transition duration-150 font-mono">
+                            </div>
+
+                            <div>
+                                <label class="block text-xs font-black text-gray-900 uppercase tracking-wider mb-2">
+                                    Batas Akhir Pengembalian
+                                </label>
+                                <input type="time" value="16:00"
+                                    class="w-full px-4 py-3 text-sm font-semibold rounded-xl bg-gray-50 border border-gray-200 text-gray-900 focus:bg-white focus:border-gray-900 focus:ring-1 focus:ring-gray-900 focus:outline-none transition duration-150 font-mono">
+                            </div>
+                        </div>
+
+                        <div class="pt-2 space-y-3">
+                            <label class="flex items-center space-x-3 p-3.5 rounded-xl border border-gray-200 bg-gray-50 hover:bg-white cursor-pointer transition">
+                                <input type="checkbox" checked class="rounded border-gray-300 text-gray-900 focus:ring-gray-900 w-4 h-4">
+                                <div class="text-xs">
+                                    <p class="font-bold text-gray-900">Kirim Notifikasi Email Realtime</p>
+                                    <p class="text-gray-500 text-[11px]">Surel otomatis dikirimkan ke staf saat siswa/guru mengajukan permohonan baru.</p>
+                                </div>
+                            </label>
+
+                            <label class="flex items-center space-x-3 p-3.5 rounded-xl border border-gray-200 bg-gray-50 hover:bg-white cursor-pointer transition">
+                                <input type="checkbox" checked class="rounded border-gray-300 text-gray-900 focus:ring-gray-900 w-4 h-4">
+                                <div class="text-xs">
+                                    <p class="font-bold text-gray-900">Validasi Bentrok Jadwal Otomatis (Anti-Collision)</p>
+                                    <p class="text-gray-500 text-[11px]">Mencegah persetujuan ganda pada jam dan tanggal peminjaman yang sama.</p>
+                                </div>
+                            </label>
+                        </div>
+
+                        <!-- Tombol Simpan Perubahan -->
+                        <div class="flex items-center justify-end pt-6 border-t border-gray-100">
+                            <button type="submit"
+                                class="inline-flex items-center space-x-2 px-7 py-3 rounded-xl bg-gray-900 hover:bg-black text-white text-xs font-black uppercase tracking-wider shadow-sm hover:shadow-xl transition-all duration-200 ease-out transform hover:-translate-y-0.5 active:scale-95 cursor-pointer">
+                                <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" />
+                                </svg>
+                                <span>Simpan Perubahan</span>
+                            </button>
+                        </div>
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </main>
+
+    <!-- Footer: Monokrom Bersih Khas Sekolah -->
+    <footer class="bg-gray-900 text-gray-400 border-t-2 border-gray-800 py-8 mt-auto">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-4 text-xs">
+                <div class="flex items-center space-x-3 text-center md:text-left">
+                    <div class="w-8 h-8 rounded-xl bg-white text-gray-900 flex items-center justify-center font-black">
+                        <svg class="w-4 h-4 text-gray-900" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
+                            <path d="M6 12v5c3 3 9 3 12 0v-5"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <p class="font-extrabold text-white">SISTEM INFORMASI MANAJEMEN SARPRAS SEKOLAH</p>
+                        <p class="text-[11px] text-gray-400">SMK Negeri 1 Ciomas • Terakreditasi A • NPSN: 20108899</p>
+                    </div>
+                </div>
+
+                <div class="text-center md:text-right">
+                    <p class="text-gray-300 font-semibold">&copy; 2026 Hak Cipta Terpelihara.</p>
+                    <p class="text-[11px] text-gray-500 mt-0.5">Kelompok Andini, Nursyifa, Reisya</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="fixed bottom-6 right-6 z-50 transform translate-y-24 opacity-0 transition-all duration-300 pointer-events-none">
+        <div class="bg-gray-900 text-white px-5 py-3.5 rounded-xl shadow-sharp-lg border border-gray-700 flex items-center space-x-3 text-xs font-bold">
+            <span class="w-2.5 h-2.5 rounded-full bg-white"></span>
+            <span id="toast-msg">Perubahan berhasil disimpan!</span>
+        </div>
+    </div>
+
+    <!-- Script Tab Switching & Toast Feedback -->
+    <script>
+        function switchTab(tabId) {
+            const tabs = ['profile', 'security', 'preferences'];
+
+            tabs.forEach(tab => {
+                const content = document.getElementById('tab-content-' + tab);
+                const navBtn = document.getElementById('nav-' + tab);
+
+                if (tab === tabId) {
+                    content.classList.remove('hidden');
+                    navBtn.classList.remove('text-gray-600', 'hover:text-gray-900', 'hover:bg-gray-100');
+                    navBtn.classList.add('bg-gray-900', 'text-white', 'shadow-sm');
+                    navBtn.querySelector('span:last-child').classList.remove('opacity-40');
+                    navBtn.querySelector('span:last-child').classList.add('opacity-90');
+                } else {
+                    content.classList.add('hidden');
+                    navBtn.classList.remove('bg-gray-900', 'text-white', 'shadow-sm');
+                    navBtn.classList.add('text-gray-600', 'hover:text-gray-900', 'hover:bg-gray-100');
+                    navBtn.querySelector('span:last-child').classList.remove('opacity-90');
+                    navBtn.querySelector('span:last-child').classList.add('opacity-40');
+                }
+            });
+        }
+
+        function triggerSaveToast(msg) {
+            const toast = document.getElementById('toast');
+            const toastMsg = document.getElementById('toast-msg');
+            toastMsg.textContent = msg;
+            toast.classList.remove('translate-y-24', 'opacity-0', 'pointer-events-none');
+            setTimeout(() => {
+                toast.classList.add('translate-y-24', 'opacity-0', 'pointer-events-none');
+            }, 3200);
+        }
+
+        function togglePasswordVisibility(inputId, btn) {
+            const input = document.getElementById(inputId);
+            if (!input) return;
+            const isPassword = input.type === 'password';
+            input.type = isPassword ? 'text' : 'password';
+
+            const eyeOpen = btn.querySelector('.eye-open');
+            const eyeClosed = btn.querySelector('.eye-closed');
+            if (eyeOpen && eyeClosed) {
+                eyeOpen.classList.toggle('hidden', isPassword);
+                eyeClosed.classList.toggle('hidden', !isPassword);
+            }
+        }
+    </script>
+</body>
+</html>

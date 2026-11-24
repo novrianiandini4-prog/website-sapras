@@ -1,0 +1,985 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistem Manajemen Sarana & Prasarana - Tema Elegan Gray & Navy</title>
+    
+    <!-- Google Fonts: Plus Jakarta Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS (via CDN) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+                    },
+                    colors: {
+                        navy: {
+                            50: '#f0f4f9',
+                            100: '#dce5f1',
+                            200: '#bdcfe3',
+                            700: '#1e3a66',
+                            800: '#172e52',
+                            900: '#10223e', // Kalem, elegan, teduh
+                            950: '#0a1628', // Pekat saat hover
+                        }
+                    },
+                    boxShadow: {
+                        'card': '0 10px 25px -5px rgba(15, 23, 42, 0.08), 0 8px 10px -6px rgba(15, 23, 42, 0.04)',
+                        'card-hover': '0 20px 35px -10px rgba(15, 23, 42, 0.14), 0 10px 15px -5px rgba(15, 23, 42, 0.06)',
+                        'navy-glow': '0 4px 18px 0 rgba(16, 34, 62, 0.25)',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+        /* Custom Scrollbar Teduh & Bersih */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #e2e8f0;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1e3a8a;
+            border-radius: 9999px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #0f172a;
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-gray-100 via-gray-200 to-gray-300 text-gray-800 antialiased min-h-screen flex flex-col font-sans relative selection:bg-blue-900 selection:text-white" style="background-attachment: fixed;">
+
+    <!-- Background Subtle Dot Mesh untuk Dimensi & Kedalaman Visual -->
+    <div class="fixed inset-0 pointer-events-none opacity-[0.035] z-0" style="background-image: radial-gradient(#0f172a 1.5px, transparent 1.5px); background-size: 24px 24px;"></div>
+
+    <!-- ======================================================== -->
+    <!-- 1. NAVIGATION BAR: Biru Dongker / Navy Teduh (bg-blue-900) -->
+    <!-- ======================================================== -->
+    <header class="sticky top-0 z-40 bg-blue-900 text-white border-b-2 border-blue-950/80 shadow-lg relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                
+                <!-- Logo & Brand Area: Elegan dengan Aksen Biru Dongker -->
+                <div class="flex items-center space-x-4">
+                    <a href="#" class="flex items-center space-x-3.5 group">
+                        <!-- Area Lambang / Logo Frame -->
+                        <div class="relative">
+                            <div class="w-12 h-12 rounded-2xl bg-white text-blue-900 flex items-center justify-center font-black shadow-md border-2 border-blue-800/40 group-hover:scale-105 transition-all duration-200">
+                                <svg class="w-6 h-6 text-blue-900" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
+                                    <path d="M6 12v5c3 3 9 3 12 0v-5"/>
+                                </svg>
+                            </div>
+                            <span class="absolute -bottom-1 -right-1 flex h-3.5 w-3.5">
+                                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
+                                <span class="relative inline-flex rounded-full h-3.5 w-3.5 bg-blue-300 border-2 border-blue-900"></span>
+                            </span>
+                        </div>
+
+                        <!-- Info Identitas -->
+                        <div>
+                            <div class="flex items-center space-x-2">
+                                <span class="text-base font-black tracking-wide text-white group-hover:text-gray-200 transition">SMK NEGERI 1 CIOMAS</span>
+                                <span class="hidden sm:inline-flex items-center px-2 py-0.5 rounded-md text-[10px] font-extrabold uppercase bg-blue-950 text-blue-200 border border-blue-800 tracking-wider">
+                                    TERAKREDITASI A
+                                </span>
+                            </div>
+                            <span class="text-[11px] block font-semibold text-blue-200/80 -mt-0.5 tracking-wider uppercase">
+                                Sistem Manajemen Sarana & Prasarana
+                            </span>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- Navigasi Menu Desktop -->
+                <nav class="hidden md:flex items-center space-x-1.5">
+                    <a href="#dashboard" class="px-4 py-2 rounded-xl text-xs font-black uppercase tracking-wider bg-white text-blue-900 shadow-md transition duration-200">
+                        Dashboard
+                    </a>
+                    <a href="#tabel-permohonan" class="px-4 py-2 rounded-xl text-xs font-bold uppercase tracking-wider text-blue-100 hover:text-white hover:bg-blue-800 transition duration-200">
+                        Peminjaman
+                    </a>
+                    <a href="#katalog-fasilitas" class="px-4 py-2 rounded-xl text-xs font-bold uppercase tracking-wider text-blue-100 hover:text-white hover:bg-blue-800 transition duration-200">
+                        Inventaris
+                    </a>
+                    <a href="#form-pengajuan" class="px-4 py-2 rounded-xl text-xs font-bold uppercase tracking-wider text-blue-100 hover:text-white hover:bg-blue-800 transition duration-200">
+                        Form Pengajuan
+                    </a>
+                    <a href="#log-aktivitas" class="px-4 py-2 rounded-xl text-xs font-bold uppercase tracking-wider text-blue-100 hover:text-white hover:bg-blue-800 transition duration-200">
+                        Aktivitas
+                    </a>
+                </nav>
+
+                <!-- Profile & Action Pengguna -->
+                <div class="flex items-center space-x-3">
+                    <div class="flex items-center space-x-3 pl-3 border-l border-blue-800">
+                        <div class="text-right hidden sm:block">
+                            <p class="text-[10px] text-blue-200/80 font-bold uppercase tracking-widest">Koordinator Sarpras</p>
+                            <p class="text-sm font-extrabold text-white leading-tight">Drs. H. Hendra, M.Pd</p>
+                        </div>
+                        <span class="inline-flex items-center px-2.5 py-1 rounded-lg text-xs font-black uppercase tracking-wider bg-blue-950 text-blue-200 border border-blue-800 shadow-inner">
+                            STAF ADMIN
+                        </span>
+                        
+                        <!-- Tombol Tambah Cepat / Modal Trigger -->
+                        <button onclick="openModal()" class="p-2.5 rounded-xl bg-blue-800 hover:bg-blue-950 text-white transition-all duration-200 border border-blue-700/60 shadow-sm transform hover:-translate-y-0.5" title="Input Cepat Sarpras">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 4v16m8-8H4" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sub-bar Navigasi Mobile -->
+        <div class="md:hidden border-t border-blue-800/80 px-4 py-2.5 flex space-x-2 overflow-x-auto bg-blue-950/70">
+            <a href="#dashboard" class="px-3 py-1.5 rounded-lg text-xs font-black uppercase whitespace-nowrap bg-white text-blue-900 shadow-sm">Dashboard</a>
+            <a href="#tabel-permohonan" class="px-3 py-1.5 rounded-lg text-xs font-bold uppercase whitespace-nowrap text-blue-100 bg-blue-900/60 hover:bg-blue-900">Peminjaman</a>
+            <a href="#katalog-fasilitas" class="px-3 py-1.5 rounded-lg text-xs font-bold uppercase whitespace-nowrap text-blue-100 bg-blue-900/60 hover:bg-blue-900">Inventaris</a>
+            <a href="#form-pengajuan" class="px-3 py-1.5 rounded-lg text-xs font-bold uppercase whitespace-nowrap text-blue-100 bg-blue-900/60 hover:bg-blue-900">Formulir</a>
+            <a href="#log-aktivitas" class="px-3 py-1.5 rounded-lg text-xs font-bold uppercase whitespace-nowrap text-blue-100 bg-blue-900/60 hover:bg-blue-900">Aktivitas</a>
+        </div>
+    </header>
+
+    <!-- ======================================================== -->
+    <!-- KONTEN UTAMA: Kotak Kartu Putih Bersih (rounded-2xl) -->
+    <!-- Dilengkapi Garis Pita Tebal Biru Dongker di Tepi Atas -->
+    <!-- ======================================================== -->
+    <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8 relative z-10" id="dashboard">
+
+        <!-- Banner Selamat Datang & Tindakan Cepat (Navy Banner yang Teduh) -->
+        <div class="relative overflow-hidden rounded-2xl bg-blue-900 p-6 sm:p-8 text-white shadow-xl border border-blue-800/80">
+            <!-- Pita Tebal Tepi Atas -->
+            <div class="absolute top-0 inset-x-0 h-2 bg-gradient-to-r from-blue-950 via-blue-800 to-blue-950"></div>
+            
+            <div class="absolute -right-16 -bottom-16 w-80 h-80 rounded-full bg-white/5 blur-3xl pointer-events-none"></div>
+            <div class="absolute right-12 top-6 opacity-10 hidden lg:block pointer-events-none">
+                <svg class="w-52 h-52 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
+                    <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+                </svg>
+            </div>
+
+            <div class="relative z-10 flex flex-col lg:flex-row lg:items-center justify-between gap-6">
+                <!-- Identitas Institusi & Keterangan -->
+                <div class="flex items-start sm:items-center space-x-4 sm:space-x-5">
+                    <div class="shrink-0 relative group">
+                        <div class="w-20 h-20 rounded-2xl bg-white text-blue-900 p-1.5 flex flex-col items-center justify-center shadow-lg border-2 border-blue-200 group-hover:scale-105 transition duration-200">
+                            <svg class="w-9 h-9 text-blue-900" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
+                                <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+                                <line x1="9" y1="7" x2="15" y2="7"/>
+                                <line x1="9" y1="11" x2="13" y2="11"/>
+                            </svg>
+                            <span class="text-[8px] font-black uppercase text-blue-950 tracking-tighter mt-1">SAPRAS SMK</span>
+                        </div>
+                        <span class="absolute -top-1.5 -right-1.5 px-1.5 py-0.5 rounded bg-blue-950 text-[9px] font-mono font-bold text-blue-200 border border-blue-800">2026</span>
+                    </div>
+
+                    <div>
+                        <div class="flex flex-wrap items-center gap-2 mb-1.5">
+                            <span class="inline-flex items-center px-3 py-1 rounded-lg text-[11px] font-black uppercase tracking-wider bg-blue-950 text-blue-200 border border-blue-800">
+                                PANEL ADMINISTRASI SARANA
+                            </span>
+                            <span class="inline-flex items-center px-2.5 py-1 rounded-lg text-[11px] font-bold text-blue-100 bg-blue-800/80 border border-blue-700/60">
+                                <span class="w-2 h-2 rounded-full bg-emerald-400 mr-1.5 animate-pulse"></span>
+                                Sistem Aktif • Sinkronisasi Otomatis
+                            </span>
+                        </div>
+                        <h1 class="text-2xl sm:text-3xl font-black tracking-tight text-white">
+                            Pusat Kontrol Sarana & Prasarana
+                        </h1>
+                        <p class="text-xs sm:text-sm text-blue-100/90 mt-1 max-w-xl leading-relaxed">
+                            Kelola ketersediaan laboratorium komputer, alat praktikum teknis, aula pertemuan, dan validasi permohonan peminjaman secara terstruktur.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Tombol Aksi Utama: Navy Pekat (hover:bg-blue-950 & sedikit terangkat) -->
+                <div class="flex items-center flex-wrap gap-3 shrink-0">
+                    <button onclick="openModal()" class="px-5 py-3 rounded-xl bg-white hover:bg-gray-100 text-blue-900 text-xs font-black uppercase tracking-wider shadow-md hover:shadow-xl transition-all duration-200 flex items-center space-x-2 transform hover:-translate-y-0.5">
+                        <svg class="w-4 h-4 text-blue-900" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 4v16m8-8H4" />
+                        </svg>
+                        <span>Tambah Aset / Item</span>
+                    </button>
+                    <a href="#form-pengajuan" class="px-5 py-3 rounded-xl bg-blue-950 hover:bg-slate-900 text-white text-xs font-bold uppercase tracking-wider border border-blue-800 hover:border-blue-700 transition-all duration-200 flex items-center space-x-2 shadow-md hover:shadow-lg transform hover:-translate-y-0.5">
+                        <svg class="w-4 h-4 text-blue-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                        </svg>
+                        <span>Buat Pengajuan Baru</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- ======================================================== -->
+        <!-- 4 KARTU STATISTIK DENGAN GARIS PITA TEBAL BIRU DONGKER   -->
+        <!-- Sudut rounded-2xl, Warna Putih Bersih, & Drop Shadow      -->
+        <!-- ======================================================== -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            
+            <!-- Kartu 1: Total Aset & Barang -->
+            <div class="bg-white rounded-2xl p-6 border border-gray-200/90 shadow-card hover:shadow-card-hover transition-all duration-200 transform hover:-translate-y-1 relative group overflow-hidden">
+                <!-- Pita Tebal Tepi Atas Kartu (Biru Gelap Kalem) -->
+                <div class="absolute top-0 inset-x-0 h-1.5 bg-blue-900 group-hover:h-2 transition-all duration-200"></div>
+
+                <div class="flex items-center justify-between">
+                    <div>
+                        <span class="text-[11px] font-black uppercase tracking-wider text-gray-500">Total Sarana & Aset</span>
+                        <h3 class="text-3xl sm:text-4xl font-black text-gray-900 mt-1 tracking-tight">524</h3>
+                    </div>
+                    <div class="w-14 h-14 rounded-2xl bg-blue-900 text-white flex items-center justify-center shadow-md group-hover:scale-105 group-hover:bg-blue-950 transition-all duration-200">
+                        <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
+                        </svg>
+                    </div>
+                </div>
+                <div class="mt-4 pt-3.5 border-t border-gray-100 flex items-center justify-between text-xs font-semibold">
+                    <span class="text-gray-600">386 Peralatan & 138 Ruang</span>
+                    <span class="inline-flex items-center px-2 py-0.5 rounded-md bg-blue-50 text-blue-900 border border-blue-200 text-[10px] font-extrabold">
+                        +18 Baru
+                    </span>
+                </div>
+            </div>
+
+            <!-- Kartu 2: Barang Sedang Dipinjam -->
+            <div class="bg-white rounded-2xl p-6 border border-gray-200/90 shadow-card hover:shadow-card-hover transition-all duration-200 transform hover:-translate-y-1 relative group overflow-hidden">
+                <!-- Pita Tebal Tepi Atas Kartu -->
+                <div class="absolute top-0 inset-x-0 h-1.5 bg-blue-900 group-hover:h-2 transition-all duration-200"></div>
+
+                <div class="flex items-center justify-between">
+                    <div>
+                        <span class="text-[11px] font-black uppercase tracking-wider text-gray-500">Aset Sedang Dipinjam</span>
+                        <h3 class="text-3xl sm:text-4xl font-black text-gray-900 mt-1 tracking-tight">72</h3>
+                    </div>
+                    <div class="w-14 h-14 rounded-2xl bg-blue-900 text-white flex items-center justify-center shadow-md group-hover:scale-105 group-hover:bg-blue-950 transition-all duration-200">
+                        <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                        </svg>
+                    </div>
+                </div>
+                <div class="mt-4 pt-3.5 border-t border-gray-100 flex items-center justify-between text-xs font-semibold">
+                    <span class="text-gray-600">18 Ruangan & 54 Alat</span>
+                    <span class="inline-flex items-center px-2 py-0.5 rounded-md bg-blue-900 text-white text-[10px] font-black uppercase">
+                        Terverifikasi
+                    </span>
+                </div>
+            </div>
+
+            <!-- Kartu 3: Ruangan & Fasilitas Tersedia -->
+            <div class="bg-white rounded-2xl p-6 border border-gray-200/90 shadow-card hover:shadow-card-hover transition-all duration-200 transform hover:-translate-y-1 relative group overflow-hidden">
+                <!-- Pita Tebal Tepi Atas Kartu -->
+                <div class="absolute top-0 inset-x-0 h-1.5 bg-blue-900 group-hover:h-2 transition-all duration-200"></div>
+
+                <div class="flex items-center justify-between">
+                    <div>
+                        <span class="text-[11px] font-black uppercase tracking-wider text-gray-500">Ruangan & Lab Siap</span>
+                        <h3 class="text-3xl sm:text-4xl font-black text-gray-900 mt-1 tracking-tight">120</h3>
+                    </div>
+                    <div class="w-14 h-14 rounded-2xl bg-blue-900 text-white flex items-center justify-center shadow-md group-hover:scale-105 group-hover:bg-blue-950 transition-all duration-200">
+                        <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                        </svg>
+                    </div>
+                </div>
+                <div class="mt-4 pt-3.5 border-t border-gray-100 flex items-center justify-between text-xs font-semibold">
+                    <span class="text-gray-600">Lab, Bengkel, & Aula</span>
+                    <span class="inline-flex items-center px-2 py-0.5 rounded-md bg-emerald-50 text-emerald-800 border border-emerald-200 text-[10px] font-bold">
+                        92% Ready
+                    </span>
+                </div>
+            </div>
+
+            <!-- Kartu 4: Pengajuan Pending (Menunggu Verifikasi) -->
+            <div class="bg-white rounded-2xl p-6 border border-gray-200/90 shadow-card hover:shadow-card-hover transition-all duration-200 transform hover:-translate-y-1 relative group overflow-hidden">
+                <!-- Pita Tebal Tepi Atas Kartu -->
+                <div class="absolute top-0 inset-x-0 h-1.5 bg-blue-900 group-hover:h-2 transition-all duration-200"></div>
+
+                <div class="flex items-center justify-between">
+                    <div>
+                        <span class="text-[11px] font-black uppercase tracking-wider text-gray-500">Pengajuan Pending</span>
+                        <h3 class="text-3xl sm:text-4xl font-black text-gray-900 mt-1 tracking-tight">9</h3>
+                    </div>
+                    <div class="w-14 h-14 rounded-2xl bg-blue-900 text-white flex items-center justify-center shadow-md group-hover:scale-105 group-hover:bg-blue-950 transition-all duration-200">
+                        <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                    </div>
+                </div>
+                <div class="mt-4 pt-3.5 border-t border-gray-100 flex items-center justify-between text-xs font-semibold">
+                    <span class="text-gray-600">Perlu Tindakan Petugas</span>
+                    <span class="inline-flex items-center px-2 py-0.5 rounded-md bg-amber-50 text-amber-800 border border-amber-200 text-[10px] font-black uppercase">
+                        Segera Proses
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        <!-- ======================================================== -->
+        <!-- TOOLBAR: FILTER & SEARCH DENGAN FOKUS BIRU DONGKER        -->
+        <!-- Kolom input berlatar bg-gray-50 & berubah ke border navy -->
+        <!-- ======================================================== -->
+        <div class="bg-white p-4 sm:p-5 rounded-2xl border border-gray-200/90 shadow-card relative overflow-hidden">
+            <!-- Garis pita tepi atas kartu -->
+            <div class="absolute top-0 inset-x-0 h-1 bg-blue-900"></div>
+
+            <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
+                <!-- Filter Pills -->
+                <div class="flex items-center space-x-2 w-full sm:w-auto overflow-x-auto pb-1 sm:pb-0">
+                    <button class="px-4 py-2 rounded-xl text-xs font-black uppercase tracking-wider bg-blue-900 text-white shadow-sm transition">
+                        Semua Sarpras (524)
+                    </button>
+                    <button class="px-4 py-2 rounded-xl text-xs font-bold uppercase tracking-wider text-gray-700 hover:text-blue-900 hover:bg-gray-100 transition">
+                        🏢 Ruangan & Lab (138)
+                    </button>
+                    <button class="px-4 py-2 rounded-xl text-xs font-bold uppercase tracking-wider text-gray-700 hover:text-blue-900 hover:bg-gray-100 transition">
+                        📦 Alat & Mesin (386)
+                    </button>
+                </div>
+
+                <!-- Input Pencarian: bg-gray-50, focus:border-blue-900 -->
+                <div class="relative w-full sm:w-80">
+                    <input type="text" id="searchInput" placeholder="Cari nama barang, ruang, atau peminjam..."
+                        class="w-full pl-10 pr-4 py-2.5 text-xs sm:text-sm font-medium rounded-xl border border-gray-300 bg-gray-50 text-gray-900 placeholder-gray-400 focus:bg-white focus:border-blue-900 focus:ring-4 focus:ring-blue-900/15 focus:outline-none transition-all duration-200">
+                    <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-gray-400">
+                        <svg class="w-4 h-4 text-blue-900" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ======================================================== -->
+        <!-- GRID KONTEN 2 KOLOM (Tabel Permohonan & Log Aktivitas)    -->
+        <!-- ======================================================== -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+            
+            <!-- KOLOM KIRI (7 Kolom): Tabel Permohonan Masuk & Fasilitas Populer -->
+            <div class="lg:col-span-7 space-y-8" id="tabel-permohonan">
+                
+                <!-- KARTU TABEL: Permohonan Masuk dengan Aksen Pita Biru Tua -->
+                <div class="bg-white rounded-2xl border border-gray-200/90 shadow-card overflow-hidden relative">
+                    <!-- Pita Tebal Tepi Atas -->
+                    <div class="absolute top-0 inset-x-0 h-1.5 bg-blue-900"></div>
+
+                    <!-- Header Kartu -->
+                    <div class="p-6 border-b border-gray-100 flex items-center justify-between bg-white pt-7">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-10 h-10 rounded-xl bg-blue-900 text-white flex items-center justify-center shadow-md">
+                                <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
+                                </svg>
+                            </div>
+                            <div>
+                                <h2 class="text-base sm:text-lg font-black text-gray-900">Permohonan Masuk (Perlu Verifikasi)</h2>
+                                <p class="text-xs text-gray-500 font-medium">Setujui atau tolak izin pemakaian sarana sekolah.</p>
+                            </div>
+                        </div>
+                        <span class="inline-flex items-center px-2.5 py-1 rounded-md text-[11px] font-black uppercase bg-blue-50 text-blue-900 border border-blue-200">
+                            9 Pending
+                        </span>
+                    </div>
+
+                    <!-- Tabel Data -->
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left border-collapse text-xs sm:text-sm">
+                            <thead>
+                                <tr class="bg-gray-50/90 text-gray-600 uppercase text-[10px] font-black tracking-wider border-b border-gray-200">
+                                    <th class="py-3.5 px-5">Peminjam</th>
+                                    <th class="py-3.5 px-5">Sarana / Fasilitas</th>
+                                    <th class="py-3.5 px-5">Jadwal Pakai</th>
+                                    <th class="py-3.5 px-5 text-center">Aksi Petugas</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-gray-100 text-gray-800">
+                                <!-- Row 1 -->
+                                <tr class="hover:bg-blue-50/30 transition duration-150" id="row-1">
+                                    <td class="py-4 px-5 whitespace-nowrap">
+                                        <p class="font-extrabold text-gray-900">Anita Rahmawati, S.Kom</p>
+                                        <p class="text-[11px] text-gray-500 font-medium">Guru Produktif RPL</p>
+                                    </td>
+                                    <td class="py-4 px-5 whitespace-nowrap">
+                                        <p class="font-bold text-gray-900">Lab Komputer RPL 2</p>
+                                        <span class="inline-block text-[10px] font-extrabold uppercase px-2 py-0.5 rounded-md bg-blue-900 text-white">
+                                            Ruangan
+                                        </span>
+                                    </td>
+                                    <td class="py-4 px-5 whitespace-nowrap">
+                                        <p class="font-bold text-gray-900">03 Okt 2026</p>
+                                        <p class="text-[11px] text-gray-500 font-mono">08:00 - 11:30 WIB</p>
+                                    </td>
+                                    <td class="py-4 px-5 text-center whitespace-nowrap">
+                                        <div class="inline-flex items-center space-x-2">
+                                            <!-- Tombol Utama: bg-blue-900 -> hover:bg-blue-950 + terangkat -->
+                                            <button onclick="approveRow('row-1', 'Lab Komputer RPL 2')" class="px-3.5 py-1.5 rounded-xl bg-blue-900 hover:bg-blue-950 text-white text-xs font-black uppercase tracking-wider shadow hover:shadow-md transition-all duration-200 transform hover:-translate-y-0.5">
+                                                Setujui
+                                            </button>
+                                            <button onclick="rejectRow('row-1')" class="px-3 py-1.5 rounded-xl bg-white text-gray-700 hover:bg-gray-100 border border-gray-300 hover:border-gray-400 text-xs font-bold uppercase tracking-wider transition duration-200">
+                                                Tolak
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+
+                                <!-- Row 2 -->
+                                <tr class="hover:bg-blue-50/30 transition duration-150" id="row-2">
+                                    <td class="py-4 px-5 whitespace-nowrap">
+                                        <p class="font-extrabold text-gray-900">Budi Santoso (Ketua OSIS)</p>
+                                        <p class="text-[11px] text-gray-500 font-medium">Siswa XII RPL 1</p>
+                                    </td>
+                                    <td class="py-4 px-5 whitespace-nowrap">
+                                        <p class="font-bold text-gray-900">Proyektor Epson EB-X400</p>
+                                        <span class="inline-block text-[10px] font-extrabold uppercase px-2 py-0.5 rounded-md bg-gray-100 text-gray-800 border border-gray-300">
+                                            Alat Elektronik
+                                        </span>
+                                    </td>
+                                    <td class="py-4 px-5 whitespace-nowrap">
+                                        <p class="font-bold text-gray-900">03 Okt 2026</p>
+                                        <p class="text-[11px] text-gray-500 font-mono">13:00 - 15:30 WIB</p>
+                                    </td>
+                                    <td class="py-4 px-5 text-center whitespace-nowrap">
+                                        <div class="inline-flex items-center space-x-2">
+                                            <button onclick="approveRow('row-2', 'Proyektor Epson EB-X400')" class="px-3.5 py-1.5 rounded-xl bg-blue-900 hover:bg-blue-950 text-white text-xs font-black uppercase tracking-wider shadow hover:shadow-md transition-all duration-200 transform hover:-translate-y-0.5">
+                                                Setujui
+                                            </button>
+                                            <button onclick="rejectRow('row-2')" class="px-3 py-1.5 rounded-xl bg-white text-gray-700 hover:bg-gray-100 border border-gray-300 hover:border-gray-400 text-xs font-bold uppercase tracking-wider transition duration-200">
+                                                Tolak
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+
+                                <!-- Row 3 -->
+                                <tr class="hover:bg-blue-50/30 transition duration-150" id="row-3">
+                                    <td class="py-4 px-5 whitespace-nowrap">
+                                        <p class="font-extrabold text-gray-900">Drs. Bambang Wijaya</p>
+                                        <p class="text-[11px] text-gray-500 font-medium">Waka Kesiswaan</p>
+                                    </td>
+                                    <td class="py-4 px-5 whitespace-nowrap">
+                                        <p class="font-bold text-gray-900">Aula Utama Graha Wiyata</p>
+                                        <span class="inline-block text-[10px] font-extrabold uppercase px-2 py-0.5 rounded-md bg-blue-900 text-white">
+                                            Ruangan
+                                        </span>
+                                    </td>
+                                    <td class="py-4 px-5 whitespace-nowrap">
+                                        <p class="font-bold text-gray-900">04 Okt 2026</p>
+                                        <p class="text-[11px] text-gray-500 font-mono">07:30 - 14:00 WIB</p>
+                                    </td>
+                                    <td class="py-4 px-5 text-center whitespace-nowrap">
+                                        <div class="inline-flex items-center space-x-2">
+                                            <button onclick="approveRow('row-3', 'Aula Utama Graha Wiyata')" class="px-3.5 py-1.5 rounded-xl bg-blue-900 hover:bg-blue-950 text-white text-xs font-black uppercase tracking-wider shadow hover:shadow-md transition-all duration-200 transform hover:-translate-y-0.5">
+                                                Setujui
+                                            </button>
+                                            <button onclick="rejectRow('row-3')" class="px-3 py-1.5 rounded-xl bg-white text-gray-700 hover:bg-gray-100 border border-gray-300 hover:border-gray-400 text-xs font-bold uppercase tracking-wider transition duration-200">
+                                                Tolak
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- KARTU STATUS FASILITAS UTAMA HARI INI -->
+                <div class="bg-white rounded-2xl p-6 border border-gray-200/90 shadow-card relative overflow-hidden" id="katalog-fasilitas">
+                    <!-- Pita Tebal Tepi Atas -->
+                    <div class="absolute top-0 inset-x-0 h-1.5 bg-blue-900"></div>
+
+                    <div class="flex items-center justify-between mb-4 pt-1">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-8 h-8 rounded-xl bg-blue-900 text-white flex items-center justify-center font-black">
+                                <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16" />
+                                </svg>
+                            </div>
+                            <h3 class="text-sm font-black uppercase tracking-wider text-gray-900">Status Fasilitas Ruangan Unggulan</h3>
+                        </div>
+                        <span class="text-xs text-blue-900 font-extrabold bg-blue-50 px-2 py-0.5 rounded-md border border-blue-200">
+                            Realtime Update
+                        </span>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div class="p-4 rounded-xl border border-gray-200 hover:border-blue-900 transition-all duration-200 bg-gray-50/70 hover:bg-white group">
+                            <div class="flex items-center justify-between">
+                                <h4 class="font-extrabold text-sm text-gray-900 group-hover:text-blue-900 transition">Lab Komputer Jaringan</h4>
+                                <span class="px-2 py-0.5 rounded-md text-[10px] font-black uppercase bg-emerald-100 text-emerald-800 border border-emerald-300">TERSEDIA</span>
+                            </div>
+                            <p class="text-xs text-gray-500 mt-1">Kapasitas 36 Unit PC Core i7 • AC • Switch Gigabit</p>
+                        </div>
+
+                        <div class="p-4 rounded-xl border border-gray-200 hover:border-blue-900 transition-all duration-200 bg-gray-50/70 hover:bg-white group">
+                            <div class="flex items-center justify-between">
+                                <h4 class="font-extrabold text-sm text-gray-900 group-hover:text-blue-900 transition">Studio Broadcasting TV</h4>
+                                <span class="px-2 py-0.5 rounded-md text-[10px] font-black uppercase bg-blue-900 text-white">DIPINJAM</span>
+                            </div>
+                            <p class="text-xs text-gray-500 mt-1">Praktikum Broadcasting Multimedia (13.00 - 16.00 WIB)</p>
+                        </div>
+
+                        <div class="p-4 rounded-xl border border-gray-200 hover:border-blue-900 transition-all duration-200 bg-gray-50/70 hover:bg-white group">
+                            <div class="flex items-center justify-between">
+                                <h4 class="font-extrabold text-sm text-gray-900 group-hover:text-blue-900 transition">Bengkel Otomotif Modern</h4>
+                                <span class="px-2 py-0.5 rounded-md text-[10px] font-black uppercase bg-emerald-100 text-emerald-800 border border-emerald-300">TERSEDIA</span>
+                            </div>
+                            <p class="text-xs text-gray-500 mt-1">Hidrolik Car Lift • Scanner Diagnostik EFI Siap Pakai</p>
+                        </div>
+
+                        <div class="p-4 rounded-xl border border-gray-200 hover:border-blue-900 transition-all duration-200 bg-gray-50/70 hover:bg-white group">
+                            <div class="flex items-center justify-between">
+                                <h4 class="font-extrabold text-sm text-gray-900 group-hover:text-blue-900 transition">Ruang Aula Pertemuan</h4>
+                                <span class="px-2 py-0.5 rounded-md text-[10px] font-black uppercase bg-amber-100 text-amber-800 border border-amber-300">TERJADWAL</span>
+                            </div>
+                            <p class="text-xs text-gray-500 mt-1">Rapat Koordinasi Komite Sekolah (Pukul 14.00 WIB)</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ======================================================== -->
+                <!-- KARTU FORMULIR LENGKAP: Input & Interaksi (Hover & Focus) -->
+                <!-- Menggunakan bg-gray-50 & focus:border-blue-900            -->
+                <!-- ======================================================== -->
+                <div class="bg-white rounded-2xl p-6 sm:p-8 border border-gray-200/90 shadow-card relative overflow-hidden" id="form-pengajuan">
+                    <!-- Pita Tebal Tepi Atas -->
+                    <div class="absolute top-0 inset-x-0 h-1.5 bg-blue-900"></div>
+
+                    <div class="flex items-center space-x-3 mb-6 pt-1">
+                        <div class="w-10 h-10 rounded-xl bg-blue-900 text-white flex items-center justify-center shadow-md">
+                            <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                            </svg>
+                        </div>
+                        <div>
+                            <h3 class="text-base sm:text-lg font-black text-gray-900">Formulir Pengajuan Sarana Baru</h3>
+                            <p class="text-xs text-gray-500 font-medium">Contoh implementasi kolom input interaktif bertema tenang & profesional.</p>
+                        </div>
+                    </div>
+
+                    <form onsubmit="handleFormSubmit(event)" class="space-y-5">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                            
+                            <!-- Input 1: Nama Pemohon -->
+                            <div>
+                                <label for="nama_pemohon" class="block text-xs font-bold uppercase tracking-wider text-gray-700 mb-1.5">
+                                    Nama Lengkap Pemohon <span class="text-red-500">*</span>
+                                </label>
+                                <input type="text" id="nama_pemohon" name="nama_pemohon" required placeholder="Contoh: Rian Pratama, S.Pd"
+                                    class="w-full px-4 py-2.5 rounded-xl border border-gray-300 bg-gray-50 text-gray-900 text-sm focus:bg-white focus:border-blue-900 focus:ring-4 focus:ring-blue-900/15 focus:outline-none transition-all duration-200">
+                            </div>
+
+                            <!-- Input 2: Peran / Unit -->
+                            <div>
+                                <label for="unit_kerja" class="block text-xs font-bold uppercase tracking-wider text-gray-700 mb-1.5">
+                                    Instansi / Unit Kerja <span class="text-red-500">*</span>
+                                </label>
+                                <select id="unit_kerja" name="unit_kerja" required
+                                    class="w-full px-4 py-2.5 rounded-xl border border-gray-300 bg-gray-50 text-gray-900 text-sm focus:bg-white focus:border-blue-900 focus:ring-4 focus:ring-blue-900/15 focus:outline-none transition-all duration-200">
+                                    <option value="" disabled selected>Pilih Unit Kerja / Jurusan...</option>
+                                    <option value="rpl">Guru Produktif RPL</option>
+                                    <option value="tkj">Guru Produktif TKJ</option>
+                                    <option value="multimedia">Guru Multimedia & DKV</option>
+                                    <option value="tata_usaha">Tata Usaha & Staf</option>
+                                    <option value="osis">Organisasi Siswa (OSIS/MPK)</option>
+                                </select>
+                            </div>
+
+                            <!-- Input 3: Sarana yang Diminta -->
+                            <div>
+                                <label for="item_sarana" class="block text-xs font-bold uppercase tracking-wider text-gray-700 mb-1.5">
+                                    Sarana / Item yang Diajukan <span class="text-red-500">*</span>
+                                </label>
+                                <input type="text" id="item_sarana" name="item_sarana" required placeholder="Misal: 1 Set Sound Portable & Mic Wireless"
+                                    class="w-full px-4 py-2.5 rounded-xl border border-gray-300 bg-gray-50 text-gray-900 text-sm focus:bg-white focus:border-blue-900 focus:ring-4 focus:ring-blue-900/15 focus:outline-none transition-all duration-200">
+                            </div>
+
+                            <!-- Input 4: Tanggal Pemakaian -->
+                            <div>
+                                <label for="tanggal_pakai" class="block text-xs font-bold uppercase tracking-wider text-gray-700 mb-1.5">
+                                    Tanggal Pelaksanaan <span class="text-red-500">*</span>
+                                </label>
+                                <input type="date" id="tanggal_pakai" name="tanggal_pakai" required
+                                    class="w-full px-4 py-2.5 rounded-xl border border-gray-300 bg-gray-50 text-gray-900 text-sm focus:bg-white focus:border-blue-900 focus:ring-4 focus:ring-blue-900/15 focus:outline-none transition-all duration-200">
+                            </div>
+
+                        </div>
+
+                        <!-- Input 5: Catatan / Deskripsi Keperluan -->
+                        <div>
+                            <label for="keperluan" class="block text-xs font-bold uppercase tracking-wider text-gray-700 mb-1.5">
+                                Uraian Keperluan Acara / Pembelajaran
+                            </label>
+                            <textarea id="keperluan" name="keperluan" rows="3" placeholder="Tuliskan rincian kegiatan dan kebutuhan teknis tambahan..."
+                                class="w-full px-4 py-2.5 rounded-xl border border-gray-300 bg-gray-50 text-gray-900 text-sm focus:bg-white focus:border-blue-900 focus:ring-4 focus:ring-blue-900/15 focus:outline-none transition-all duration-200 resize-none"></textarea>
+                        </div>
+
+                        <!-- Tombol Submit & Reset -->
+                        <div class="pt-2 flex flex-col sm:flex-row items-center justify-end gap-3">
+                            <button type="reset" class="w-full sm:w-auto px-5 py-2.5 rounded-xl border border-gray-300 bg-white hover:bg-gray-100 text-gray-700 text-xs font-bold uppercase tracking-wider transition-all duration-200">
+                                Bersihkan Form
+                            </button>
+                            
+                            <!-- Tombol Aksi Utama: Hover transisi mulus ke biru lebih pekat (hover:bg-blue-950) & sedikit terangkat -->
+                            <button type="submit" class="w-full sm:w-auto px-6 py-2.5 rounded-xl bg-blue-900 hover:bg-blue-950 text-white text-xs font-black uppercase tracking-wider shadow-md hover:shadow-xl transition-all duration-200 transform hover:-translate-y-0.5 flex items-center justify-center space-x-2">
+                                <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                </svg>
+                                <span>Kirim Permohonan</span>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+
+            <!-- ======================================================== -->
+            <!-- KOLOM KANAN (5 Kolom): Log Aktivitas & Ringkasan          -->
+            <!-- ======================================================== -->
+            <div class="lg:col-span-5 space-y-8" id="log-aktivitas">
+                
+                <!-- KARTU DAFTAR AKTIVITAS TERBARU (Live Feed) -->
+                <div class="bg-white rounded-2xl border border-gray-200/90 shadow-card overflow-hidden relative">
+                    <!-- Pita Tebal Tepi Atas -->
+                    <div class="absolute top-0 inset-x-0 h-1.5 bg-blue-900"></div>
+
+                    <!-- Header Kartu -->
+                    <div class="p-6 border-b border-gray-100 flex items-center justify-between bg-white pt-7">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-10 h-10 rounded-xl bg-blue-900 text-white flex items-center justify-center shadow-md">
+                                <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                            </div>
+                            <div>
+                                <h2 class="text-base font-black text-gray-900">Daftar Aktivitas Terbaru</h2>
+                                <p class="text-[11px] text-gray-500 font-medium">Log aktivitas peminjaman sarana real-time</p>
+                            </div>
+                        </div>
+                        <span class="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-black uppercase bg-blue-50 text-blue-900 border border-blue-200">
+                            Live Feed
+                        </span>
+                    </div>
+
+                    <!-- Timeline Aktivitas -->
+                    <div class="p-6 divide-y divide-gray-100">
+                        
+                        <!-- Aktivitas 1 -->
+                        <div class="py-3.5 first:pt-0 flex items-start space-x-3.5 group">
+                            <div class="w-8 h-8 rounded-xl bg-blue-900 text-white flex items-center justify-center shrink-0 mt-0.5 shadow-sm group-hover:scale-105 transition">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" />
+                                </svg>
+                            </div>
+                            <div class="flex-1 min-w-0">
+                                <div class="flex items-center justify-between">
+                                    <p class="text-xs font-black text-gray-900 truncate">Lab Komputer RPL 1</p>
+                                    <span class="text-[10px] text-gray-400 font-mono">10 mnt lalu</span>
+                                </div>
+                                <p class="text-xs text-gray-600 mt-0.5">Disetujui untuk Guru Produktif (Praktikum Web Service)</p>
+                                <div class="mt-1 flex items-center space-x-2">
+                                    <span class="inline-block text-[9px] font-black uppercase px-2 py-0.5 rounded bg-blue-900 text-white">Disetujui</span>
+                                    <span class="text-[10px] text-gray-400 font-mono">Kode: SAP-0941</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Aktivitas 2 -->
+                        <div class="py-3.5 flex items-start space-x-3.5 group">
+                            <div class="w-8 h-8 rounded-xl bg-amber-100 text-amber-900 border border-amber-300 flex items-center justify-center shrink-0 mt-0.5 shadow-sm group-hover:scale-105 transition">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3" />
+                                </svg>
+                            </div>
+                            <div class="flex-1 min-w-0">
+                                <div class="flex items-center justify-between">
+                                    <p class="text-xs font-black text-gray-900 truncate">Proyektor Epson EB-X400</p>
+                                    <span class="text-[10px] text-gray-400 font-mono">25 mnt lalu</span>
+                                </div>
+                                <p class="text-xs text-gray-600 mt-0.5">Permohonan diajukan oleh Siswa Pengurus OSIS</p>
+                                <div class="mt-1 flex items-center space-x-2">
+                                    <span class="inline-block text-[9px] font-black uppercase px-2 py-0.5 rounded bg-amber-50 text-amber-900 border border-amber-300">Menunggu</span>
+                                    <span class="text-[10px] text-gray-400 font-mono">Keperluan: Sidang Pleno</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Aktivitas 3 -->
+                        <div class="py-3.5 flex items-start space-x-3.5 group">
+                            <div class="w-8 h-8 rounded-xl bg-emerald-100 text-emerald-900 border border-emerald-300 flex items-center justify-center shrink-0 mt-0.5 shadow-sm group-hover:scale-105 transition">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                </svg>
+                            </div>
+                            <div class="flex-1 min-w-0">
+                                <div class="flex items-center justify-between">
+                                    <p class="text-xs font-black text-gray-900 truncate">Ruang Audio Visual</p>
+                                    <span class="text-[10px] text-gray-400 font-mono">1 jam lalu</span>
+                                </div>
+                                <p class="text-xs text-gray-600 mt-0.5">Kunci ruangan dikembalikan lengkap & dalam kondisi bersih</p>
+                                <div class="mt-1 flex items-center space-x-2">
+                                    <span class="inline-block text-[9px] font-black uppercase px-2 py-0.5 rounded bg-emerald-50 text-emerald-900 border border-emerald-300">Selesai</span>
+                                    <span class="text-[10px] text-gray-400 font-mono">Petugas: Pak Joko</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Aktivitas 4 -->
+                        <div class="py-3.5 last:pb-0 flex items-start space-x-3.5 group">
+                            <div class="w-8 h-8 rounded-xl bg-blue-900 text-white flex items-center justify-center shrink-0 mt-0.5 shadow-sm group-hover:scale-105 transition">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+                                </svg>
+                            </div>
+                            <div class="flex-1 min-w-0">
+                                <div class="flex items-center justify-between">
+                                    <p class="text-xs font-black text-gray-900 truncate">5 Unit Microphone Wireless Shure</p>
+                                    <span class="text-[10px] text-gray-400 font-mono">3 jam lalu</span>
+                                </div>
+                                <p class="text-xs text-gray-600 mt-0.5">Penambahan inventaris baru sarana sekolah dari dana BOS</p>
+                                <div class="mt-1 flex items-center space-x-2">
+                                    <span class="inline-block text-[9px] font-black uppercase px-2 py-0.5 rounded bg-blue-900 text-white">Aset Baru</span>
+                                    <span class="text-[10px] text-gray-400 font-mono">Kondisi: 100% Baru</span>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="p-4 bg-gray-50 border-t border-gray-100 text-center">
+                        <button onclick="showToast('Memuat seluruh arsip aktivitas log...')" class="text-xs font-bold text-blue-900 hover:text-blue-950 hover:underline">
+                            Lihat Seluruh Riwayat Log &rarr;
+                        </button>
+                    </div>
+                </div>
+
+                <!-- KARTU PANDUAN DAN KETENTUAN (Navy Accent Elegan) -->
+                <div class="bg-blue-900 rounded-2xl p-6 text-white border border-blue-800 shadow-card relative overflow-hidden">
+                    <!-- Pita Atas -->
+                    <div class="absolute top-0 inset-x-0 h-1.5 bg-blue-950"></div>
+
+                    <div class="flex items-center space-x-3 mb-3 pt-1">
+                        <div class="w-9 h-9 rounded-xl bg-white text-blue-900 flex items-center justify-center font-black shadow-sm">
+                            <svg class="w-5 h-5 text-blue-900" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                        </div>
+                        <div>
+                            <h4 class="text-sm font-black">Ketentuan Peminjaman Sarpras</h4>
+                            <p class="text-[11px] text-blue-200">SMK Negeri 1 Ciomas Standard</p>
+                        </div>
+                    </div>
+                    <p class="text-xs text-blue-100/90 leading-relaxed">
+                        1. Setiap peminjaman alat inventaris wajib diverifikasi kondisi fisiknya oleh staf sarpras sebelum dan sesudah kegiatan.<br>
+                        2. Batas waktu pengembalian alat adalah pukul 16.00 WIB pada hari yang sama di Ruang Tata Usaha.
+                    </p>
+                    <div class="mt-4 pt-3.5 border-t border-blue-800/80 flex items-center justify-between text-[11px] text-blue-200 font-mono">
+                        <span>Ruang Sapras: Gedung B-02</span>
+                        <span>Hotline: (021) 8872-104</span>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </main>
+
+    <!-- ======================================================== -->
+    <!-- FOOTER: Bersih, Rapi & Elegan dengan Aksen Biru Dongker  -->
+    <!-- ======================================================== -->
+    <footer class="bg-blue-900 text-blue-100 border-t-2 border-blue-950 py-8 mt-auto relative z-10 shadow-lg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-4 text-xs">
+                
+                <!-- Identitas Footer -->
+                <div class="flex items-center space-x-3 text-center md:text-left">
+                    <div class="w-9 h-9 rounded-xl bg-white text-blue-900 flex items-center justify-center font-black shadow-md">
+                        <svg class="w-5 h-5 text-blue-900" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
+                            <path d="M6 12v5c3 3 9 3 12 0v-5"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <p class="font-extrabold text-white">SISTEM INFORMASI MANAJEMEN SARPRAS SEKOLAH</p>
+                        <p class="text-[11px] text-blue-200">SMK Negeri 1 Ciomas • Terakreditasi A • NPSN: 20108899</p>
+                    </div>
+                </div>
+
+                <!-- Hak Cipta -->
+                <div class="text-center md:text-right">
+                    <p class="text-white font-semibold">&copy; 2026 Hak Cipta Dilindungi Undang-Undang.</p>
+                    <p class="text-[11px] text-blue-300 mt-0.5">Kelompok Andini, Nursyifa, Reisya</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ======================================================== -->
+    <!-- MODAL POPUP: Tambah Aset / Sarpras Baru                 -->
+    <!-- Menampilkan Kolom Input Berlatar bg-gray-50 & Focus Navy  -->
+    <!-- ======================================================== -->
+    <div id="modalAset" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm hidden transition-all duration-300">
+        <div class="bg-white rounded-2xl shadow-2xl border border-gray-200 max-w-lg w-full overflow-hidden transform transition-all relative">
+            <!-- Garis Pita Tebal Biru Dongker di Tepi Atas -->
+            <div class="h-2 w-full bg-blue-900"></div>
+
+            <!-- Modal Header -->
+            <div class="p-6 border-b border-gray-100 flex items-center justify-between">
+                <div class="flex items-center space-x-3">
+                    <div class="w-9 h-9 rounded-xl bg-blue-900 text-white flex items-center justify-center font-bold">
+                        <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+                        </svg>
+                    </div>
+                    <h3 class="text-base font-black text-gray-900">Tambah Sarana / Aset Baru</h3>
+                </div>
+                <button onclick="closeModal()" class="text-gray-400 hover:text-gray-600 p-1.5 rounded-lg hover:bg-gray-100 transition">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Modal Body (Form Input) -->
+            <form onsubmit="handleModalSubmit(event)" class="p-6 space-y-4">
+                <div>
+                    <label class="block text-xs font-bold uppercase tracking-wider text-gray-700 mb-1">Nama Sarana / Item</label>
+                    <input type="text" required placeholder="Contoh: Router MikroTik CCR1009"
+                        class="w-full px-4 py-2.5 rounded-xl border border-gray-300 bg-gray-50 text-gray-900 text-sm focus:bg-white focus:border-blue-900 focus:ring-4 focus:ring-blue-900/15 focus:outline-none transition-all duration-200">
+                </div>
+
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-bold uppercase tracking-wider text-gray-700 mb-1">Kategori</label>
+                        <select class="w-full px-4 py-2.5 rounded-xl border border-gray-300 bg-gray-50 text-gray-900 text-sm focus:bg-white focus:border-blue-900 focus:ring-4 focus:ring-blue-900/15 focus:outline-none transition-all duration-200">
+                            <option>Peralatan Jaringan</option>
+                            <option>Elektronik & Multimedia</option>
+                            <option>Ruangan & Lab</option>
+                            <option>Peralatan Bengkel</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold uppercase tracking-wider text-gray-700 mb-1">Jumlah Unit</label>
+                        <input type="number" min="1" value="1"
+                            class="w-full px-4 py-2.5 rounded-xl border border-gray-300 bg-gray-50 text-gray-900 text-sm focus:bg-white focus:border-blue-900 focus:ring-4 focus:ring-blue-900/15 focus:outline-none transition-all duration-200">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold uppercase tracking-wider text-gray-700 mb-1">Lokasi Penyimpanan</label>
+                    <input type="text" placeholder="Contoh: Lab Komputer 2 - Rak Peralatan A"
+                        class="w-full px-4 py-2.5 rounded-xl border border-gray-300 bg-gray-50 text-gray-900 text-sm focus:bg-white focus:border-blue-900 focus:ring-4 focus:ring-blue-900/15 focus:outline-none transition-all duration-200">
+                </div>
+
+                <!-- Modal Actions -->
+                <div class="pt-4 border-t border-gray-100 flex items-center justify-end space-x-3">
+                    <button type="button" onclick="closeModal()" class="px-4 py-2.5 rounded-xl border border-gray-300 bg-white hover:bg-gray-100 text-gray-700 text-xs font-bold uppercase transition">
+                        Batal
+                    </button>
+                    <!-- Tombol Utama: hover:bg-blue-950 & sedikit terangkat -->
+                    <button type="submit" class="px-5 py-2.5 rounded-xl bg-blue-900 hover:bg-blue-950 text-white text-xs font-black uppercase tracking-wider shadow-md hover:shadow-lg transition-all duration-200 transform hover:-translate-y-0.5">
+                        Simpan Sarana
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- ======================================================== -->
+    <!-- TOAST NOTIFICATION: Umpan Balik Aksi Interaktif          -->
+    <!-- ======================================================== -->
+    <div id="toast" class="fixed bottom-5 right-5 z-50 transform translate-y-20 opacity-0 transition-all duration-300 pointer-events-none">
+        <div class="bg-blue-900 text-white px-5 py-3.5 rounded-2xl shadow-2xl border border-blue-800 flex items-center space-x-3 text-xs font-bold">
+            <span class="w-2.5 h-2.5 rounded-full bg-emerald-400"></span>
+            <span id="toast-msg">Tindakan berhasil diproses!</span>
+        </div>
+    </div>
+
+    <!-- ======================================================== -->
+    <!-- JAVASCRIPT: Interaksi Dinamis & Umpan Balik Visual        -->
+    <!-- ======================================================== -->
+    <script>
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            const msg = document.getElementById('toast-msg');
+            msg.textContent = message;
+            toast.classList.remove('translate-y-20', 'opacity-0', 'pointer-events-none');
+            setTimeout(() => {
+                toast.classList.add('translate-y-20', 'opacity-0', 'pointer-events-none');
+            }, 3200);
+        }
+
+        function approveRow(rowId, name) {
+            const row = document.getElementById(rowId);
+            if (row) {
+                row.style.transition = 'all 0.35s ease';
+                row.style.opacity = '0.3';
+                row.style.backgroundColor = '#dbeafe';
+                setTimeout(() => {
+                    row.remove();
+                    showToast('Permohonan "' + name + '" berhasil disetujui!');
+                }, 350);
+            }
+        }
+
+        function rejectRow(rowId) {
+            const row = document.getElementById(rowId);
+            if (row) {
+                row.style.transition = 'all 0.35s ease';
+                row.style.opacity = '0.3';
+                setTimeout(() => {
+                    row.remove();
+                    showToast('Permohonan sarana berhasil ditolak.');
+                }, 350);
+            }
+        }
+
+        function openModal() {
+            document.getElementById('modalAset').classList.remove('hidden');
+        }
+
+        function closeModal() {
+            document.getElementById('modalAset').classList.add('hidden');
+        }
+
+        function handleModalSubmit(e) {
+            e.preventDefault();
+            closeModal();
+            showToast('Item sarana baru berhasil ditambahkan ke inventaris!');
+        }
+
+        function handleFormSubmit(e) {
+            e.preventDefault();
+            showToast('Formulir pengajuan sarana baru berhasil dikirim!');
+            e.target.reset();
+        }
+
+        // Live Filter search simulation
+        document.getElementById('searchInput')?.addEventListener('input', function(e) {
+            const q = e.target.value.toLowerCase();
+            const rows = document.querySelectorAll('tbody tr');
+            rows.forEach(r => {
+                if (r.textContent.toLowerCase().includes(q)) {
+                    r.style.display = '';
+                } else {
+                    r.style.display = 'none';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
